@@ -1,5 +1,7 @@
-# [Fast Point Transformer](https://arxiv.org/abs/2112.04702)
+# Fast Point Transformer
+Project Page | [Paper](https://arxiv.org/abs/2112.04702)
 
+[Fast Point Transformer](https://arxiv.org/abs/2112.04702) \
  [Chunghyun Park](https://github.com/chrockey),
  [Yoonwoo Jeong](https://github.com/jeongyw12382),
  [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/),
