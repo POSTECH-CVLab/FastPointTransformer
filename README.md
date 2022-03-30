@@ -1,4 +1,4 @@
-# Fast Point Transformer
+# [Fast Point Transformer](https://arxiv.org/abs/2112.04702)
 
  [Chunghyun Park](https://github.com/chrockey),
  [Yoonwoo Jeong](https://github.com/jeongyw12382),
