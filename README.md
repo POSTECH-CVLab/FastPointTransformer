@@ -30,4 +30,4 @@ Project Page | [Paper](https://arxiv.org/abs/2112.04702)
 
 ## Acknowledment
 
-Our code is based on the [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine) and [Torch Points3D](https://github.com/torch-points3d/torch-points3d).
+Our code is based on the [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine) and [Torch-Points3D](https://github.com/torch-points3d/torch-points3d).
