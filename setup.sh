@@ -52,13 +52,13 @@ else
     echo "[FPT INFO] Installing MinkowskiEngine..."
     cd thirdparty/MinkowskiEngine
     python setup.py install --blas_include_dirs=${CONDA_PREFIX}/include --blas=openblas --force_cuda
-    cd ...
+    cd ../..
     echo "[FPT INFO] Done."
 
     echo "[FPT INFO] Installing cuda_ops..."
     cd src/cuda_ops
     pip3 install .
-    cd ...
+    cd ../..
     echo "[FPT INFO] Done."
 
     TORCH="$(python -c "import torch; print(torch.__version__)")"
