@@ -1,0 +1,6 @@
+include "./config/scannet/eval_default.gin"
+
+# Model
+eval.model_name = "Res16UNet34C"
+Res16UNet34C.in_channels = %in_channels
+Res16UNet34C.out_channels = %out_channels

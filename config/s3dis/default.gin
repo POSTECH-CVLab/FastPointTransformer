@@ -1,0 +1,89 @@
+include "./config/default.gin"
+
+# Constants
+in_channels = 3
+out_channels = 13
+
+# Data module
+S3DISArea5RGBDataModule.data_root = "/root/data/s3dis" # you need to modify this according to your data.
+S3DISArea5RGBDataModule.train_batch_size = 8
+S3DISArea5RGBDataModule.val_batch_size = 2
+S3DISArea5RGBDataModule.train_num_workers = 8
+S3DISArea5RGBDataModule.val_num_workers = 4
+S3DISArea5RGBDataModule.collation_type = "collate_minkowski"
+S3DISArea5RGBDataModule.train_transforms = [
+    "DimensionlessCoordinates",
+    "RandomRotation",
+    "RandomCrop",
+    "RandomAffine", # affine to rotate the rectangular crop
+    "CoordinateDropout",
+    "ChromaticTranslation",
+    "ChromaticJitter",
+    "RandomHorizontalFlip",
+    "RandomTranslation",
+    "ElasticDistortion",
+    "NormalizeColor",
+]
+S3DISArea5RGBDataModule.eval_transforms = [
+    "DimensionlessCoordinates",
+    "NormalizeColor",
+]
+
+# Augmentation
+DimensionlessCoordinates.voxel_size = 0.05
+RandomCrop.x = 80
+RandomCrop.y = 80
+RandomCrop.z = 80
+RandomCrop.min_cardinality = 100
+RandomCrop.max_retries = 40
+RandomHorizontalFlip.upright_axis = "z"
+RandomAffine.upright_axis = "z"
+RandomAffine.application_ratio = 0.7
+ChromaticJitter.std = 0.01
+ChromaticJitter.application_ratio = 0.7
+ElasticDistortion.distortion_params = [(4, 16)]
+ElasticDistortion.application_ratio = 0.7
+
+# Pytorch lightning module
+LitSegmentationModuleBase.num_classes = %out_channels
+LitSegmentationModuleBase.lr = 0.1
+LitSegmentationModuleBase.momentum = 0.9
+LitSegmentationModuleBase.weight_decay = 1e-4
+LitSegmentationModuleBase.warmup_steps_ratio = 0.01
+LitSegmentationModuleBase.best_metric_type = "maximize"
+
+# Training
+train.data_module_name = "S3DISArea5RGBDataModule"
+train.gpus = 1
+train.log_every_n_steps = 10
+train.check_val_every_n_epoch = 1
+train.refresh_rate_per_second = 1
+train.best_metric = "val_mIoU"
+train.max_epoch = None
+train.max_step = 60000
+
+# Logging
+logged_hparams.keys = [
+    "train.model_name",
+    "train.data_module_name",
+    "DimensionlessCoordinates.voxel_size",
+    "S3DISArea5RGBDataModule.train_transforms",
+    "S3DISArea5RGBDataModule.eval_transforms",
+    "S3DISArea5RGBDataModule.train_batch_size",
+    "S3DISArea5RGBDataModule.val_batch_size",
+    "S3DISArea5RGBDataModule.train_num_workers",
+    "S3DISArea5RGBDataModule.val_num_workers",
+    "RandomCrop.x",
+    "RandomHorizontalFlip.upright_axis",
+    "RandomAffine.upright_axis",
+    "RandomAffine.application_ratio",
+    "ChromaticJitter.std",
+    "ChromaticJitter.application_ratio",
+    "ElasticDistortion.distortion_params",
+    "ElasticDistortion.application_ratio",
+    "LitSegmentationModuleBase.lr",
+    "LitSegmentationModuleBase.momentum",
+    "LitSegmentationModuleBase.weight_decay",
+    "LitSegmentationModuleBase.warmup_steps_ratio",
+    "train.max_step",
+]

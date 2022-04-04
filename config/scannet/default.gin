@@ -1,0 +1,87 @@
+include "./config/default.gin"
+
+# Constants
+in_channels = 3
+out_channels = 20
+
+# Data module
+ScanNetRGBDataModule.data_root = "/root/data/scannetv2" # you need to modify this according to your data.
+ScanNetRGBDataModule.train_batch_size = 8
+ScanNetRGBDataModule.val_batch_size = 2
+ScanNetRGBDataModule.train_num_workers = 8
+ScanNetRGBDataModule.val_num_workers = 4
+ScanNetRGBDataModule.collation_type = "collate_minkowski"
+ScanNetRGBDataModule.train_transforms = [
+    "DimensionlessCoordinates",
+    "RandomRotation",
+    "RandomCrop",
+    "RandomAffine", # affine to rotate the rectangular crop
+    "CoordinateDropout",
+    "ChromaticTranslation",
+    "ChromaticJitter",
+    "RandomHorizontalFlip",
+    "RandomTranslation",
+    "ElasticDistortion",
+    "NormalizeColor",
+]
+ScanNetRGBDataModule.eval_transforms = [
+    "DimensionlessCoordinates",
+    "NormalizeColor",
+]
+
+# Augmentation
+DimensionlessCoordinates.voxel_size = 0.02
+RandomCrop.x = 225
+RandomCrop.y = 225
+RandomCrop.z = 225
+RandomHorizontalFlip.upright_axis = "z"
+RandomAffine.upright_axis = "z"
+RandomAffine.application_ratio = 0.7
+ChromaticJitter.std = 0.01
+ChromaticJitter.application_ratio = 0.7
+ElasticDistortion.distortion_params = [(4, 16)]
+ElasticDistortion.application_ratio = 0.7
+
+# Pytorch lightning module
+LitSegmentationModuleBase.num_classes = %out_channels
+LitSegmentationModuleBase.lr = 0.1
+LitSegmentationModuleBase.momentum = 0.9
+LitSegmentationModuleBase.weight_decay = 1e-4
+LitSegmentationModuleBase.warmup_steps_ratio = 0.1
+LitSegmentationModuleBase.best_metric_type = "maximize"
+
+# Training
+train.data_module_name = "ScanNetRGBDataModule"
+train.gpus = 1
+train.log_every_n_steps = 10
+train.check_val_every_n_epoch = 1
+train.refresh_rate_per_second = 1
+train.best_metric = "val_mIoU"
+train.max_epoch = None
+train.max_step = 100000
+
+# Logging
+logged_hparams.keys = [
+    "train.model_name",
+    "train.data_module_name",
+    "DimensionlessCoordinates.voxel_size",
+    "ScanNetRGBDataModule.train_transforms",
+    "ScanNetRGBDataModule.eval_transforms",
+    "ScanNetRGBDataModule.train_batch_size",
+    "ScanNetRGBDataModule.val_batch_size",
+    "ScanNetRGBDataModule.train_num_workers",
+    "ScanNetRGBDataModule.val_num_workers",
+    "RandomCrop.x",
+    "RandomHorizontalFlip.upright_axis",
+    "RandomAffine.upright_axis",
+    "RandomAffine.application_ratio",
+    "ChromaticJitter.std",
+    "ChromaticJitter.application_ratio",
+    "ElasticDistortion.distortion_params",
+    "ElasticDistortion.application_ratio",
+    "LitSegmentationModuleBase.lr",
+    "LitSegmentationModuleBase.momentum",
+    "LitSegmentationModuleBase.weight_decay",
+    "LitSegmentationModuleBase.warmup_steps_ratio",
+    "train.max_step",
+]

@@ -1,0 +1,4 @@
+include "./config/scannet/train_res16unet34c.gin"
+
+# Data module
+ScanNetRGBDataModule.data_root = "/home/p0125ch/data/ScanNetV2" # you need to modify this according to your data.

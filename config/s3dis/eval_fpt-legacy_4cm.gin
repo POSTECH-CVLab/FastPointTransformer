@@ -1,0 +1,6 @@
+include "./config/s3dis/eval_res16unet34c_4cm.gin"
+
+# Model
+eval.model_name = "FastPointTransformerLegacy"
+FastPointTransformerLegacy.in_channels = %in_channels
+FastPointTransformerLegacy.out_channels = %out_channels

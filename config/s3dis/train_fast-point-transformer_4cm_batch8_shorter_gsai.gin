@@ -1,0 +1,22 @@
+include "./config/s3dis/train_res16unet34c.gin"
+
+# Data module
+S3DISArea5RGBDataModule.data_root = "/home/p0125ch/data/S3DIS" # you need to modify this according to your data.
+S3DISArea5RGBDataModule.train_batch_size = 8
+S3DISArea5RGBDataModule.val_batch_size = 1
+S3DISArea5RGBDataModule.train_num_workers = 8
+S3DISArea5RGBDataModule.val_num_workers = 4
+
+# Augmentation
+DimensionlessCoordinates.voxel_size = 0.04
+RandomCrop.x = 100
+RandomCrop.y = 100
+RandomCrop.z = 100
+
+# Model
+train.model_name = "FastPointTransformer"
+FastPointTransformer.in_channels = %in_channels
+FastPointTransformer.out_channels = %out_channels
+
+# Training
+train.max_step = 30000

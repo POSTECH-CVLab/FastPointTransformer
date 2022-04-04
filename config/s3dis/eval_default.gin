@@ -1,0 +1,22 @@
+# Constants
+in_channels = 3
+out_channels = 13
+
+# Data module
+S3DISArea5RGBDataModule.data_root = "/root/data/s3dis" # you need to modify this according to your data.
+S3DISArea5RGBDataModule.train_batch_size = None
+S3DISArea5RGBDataModule.val_batch_size = 1
+S3DISArea5RGBDataModule.train_num_workers = None
+S3DISArea5RGBDataModule.val_num_workers = 4
+S3DISArea5RGBDataModule.collation_type = "collate_minkowski"
+S3DISArea5RGBDataModule.train_transforms = None
+S3DISArea5RGBDataModule.eval_transforms = [
+    "DimensionlessCoordinates",
+    "NormalizeColor",
+]
+
+# Augmentation
+DimensionlessCoordinates.voxel_size = 0.05
+
+# Evaluation
+eval.data_module_name = "S3DISArea5RGBDataModule"

@@ -1,0 +1,4 @@
+include "./config/scannet/train_fpt_gsai.gin"
+
+# Augmentation
+DimensionlessCoordinates.voxel_size = 0.1

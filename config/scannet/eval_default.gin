@@ -1,0 +1,22 @@
+# Constants
+in_channels = 3
+out_channels = 20
+
+# Data module
+ScanNetRGBDataModule.data_root = "/root/data/scannetv2" # you need to modify this according to your data.
+ScanNetRGBDataModule.train_batch_size = None
+ScanNetRGBDataModule.val_batch_size = 1
+ScanNetRGBDataModule.train_num_workers = None
+ScanNetRGBDataModule.val_num_workers = 4
+ScanNetRGBDataModule.collation_type = "collate_minkowski"
+ScanNetRGBDataModule.train_transforms = None
+ScanNetRGBDataModule.eval_transforms = [
+    "DimensionlessCoordinates",
+    "NormalizeColor",
+]
+
+# Augmentation
+DimensionlessCoordinates.voxel_size = 0.02
+
+# Evaluation
+eval.data_module_name = "ScanNetRGBDataModule"

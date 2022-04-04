@@ -1,0 +1,6 @@
+include "./config/scannet/train_fpt_gsai.gin"
+
+# Model
+train.model_name = "FastPointTransformerLegacySmaller"
+FastPointTransformerLegacySmaller.in_channels = %in_channels
+FastPointTransformerLegacySmaller.out_channels = %out_channels
