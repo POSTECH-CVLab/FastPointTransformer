@@ -1,0 +1,3 @@
+[submodule "thirdparty/MinkowskiEngine"]
+	path = thirdparty/MinkowskiEngine
+	url = git@github.com:chrockey/MinkowskiEngine.git
