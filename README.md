@@ -1,5 +1,11 @@
+<div align="center">   
+  
 # Fast Point Transformer
-Project Page | [Paper](https://arxiv.org/abs/2112.04702)
+[![Paper](https://img.shields.io/badge/paper-arXiv%3A2007.00151-green)](https://arxiv.org/abs/2112.04702)
+
+</div>
+
+This repository contains the source code and data for our paper:
 
 [Fast Point Transformer](https://arxiv.org/abs/2112.04702) \
  [Chunghyun Park](https://github.com/chrockey),
@@ -7,7 +13,7 @@ Project Page | [Paper](https://arxiv.org/abs/2112.04702)
  [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/),
  [Jaesik Park](http://jaesik.info/) \
  POSTECH GSAI & CSE \
- in CVPR 2022
+ IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2022
 
  <div style="text-align:center">
  <img src="assets/overview.png" alt="An overview of the proposed method"/>
