@@ -21,7 +21,7 @@ This repository contains the source code and data for our paper:
 
  ## Overview
 
- The recent success of neural networks enables a better interpretation of 3D point clouds, but processing a large-scale 3D scene remains a challenging problem. Most current approaches divide a large-scale scene into small regions and combine the local predictions together. However, this scheme inevitably involves additional stages for pre- and post-processing and may also degrade the final output due to predictions in a local perspective. This paper introduces Fast Point Transformer that consists of a new lightweight self-attention layer. Our approach encodes continuous 3D coordinates, and the voxel hashing-based architecture boosts computational efficiency. The proposed method is demonstrated with 3D semantic segmentation and 3D detection. The accuracy of our approach is competitive to the best voxel based method, and our network achieves 129 times faster inference time than the state-of-the-art, Point Transformer, with a reasonable accuracy trade-off in 3D semantic segmentation on S3DIS dataset.
+ This paper introduces Fast Point Transformer that consists of a new lightweight self-attention layer. Our approach encodes continuous 3D coordinates, and the voxel hashing-based architecture boosts computational efficiency. The proposed method is demonstrated with 3D semantic segmentation and 3D detection. The accuracy of our approach is competitive to the best voxel based method, and our network achieves 129 times faster inference time than the state-of-the-art, Point Transformer, with a reasonable accuracy trade-off in 3D semantic segmentation on S3DIS dataset.
 
 ## Installation
 This repository is developed and tested on
@@ -29,8 +29,8 @@ This repository is developed and tested on
 - Ubuntu 18.04 and 20.04
 - Conda 4.11.0
 - CUDA 11.1
-- Python 3.8
-- PyTorch 1.7 and 1.10
+- Python 3.8.13
+- PyTorch 1.7.1 and 1.10.0
 - MinkowskiEngine 0.5.4
 
 ### Environment Setup
@@ -40,7 +40,7 @@ bash setup.sh fpt
 ```
 
 ## Citation
-If you find our code or paper useful, please cite our paper:
+If you find our code or paper useful, please consider citing our paper:
 
  ```BibTeX
 @inproceedings{park2022fast,
