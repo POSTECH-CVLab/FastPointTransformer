@@ -40,6 +40,7 @@ bash setup.sh fpt
 ```
 
 ## Citation
+If you find our code or paper useful, please cite our paper:
 
  ```BibTeX
 @inproceedings{park2022fast,
