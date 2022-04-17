@@ -46,7 +46,7 @@ We highlight the **best** method in the table below.
 ### 2. ScanNetV2 validation
 #### 2-1. 3D semantic segmentation
 | Model                             | Voxel Size  | mAcc (%) | mIoU (%) | Reference |
-|:----------------------------------|------------:|:--------:|:--------:|:---------:|
+|:----------------------------------|:-----------:|:--------:|:--------:|:---------:|
 | MinkowskiNet42                    | 2cm | - | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
 | MinkowskiNet42<sup>&dagger;</sup> | 2cm | 81.4 | 72.1 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EXmE1pWDZ8lEtJU7SQMjkXcBnhSMXFTdHWXkMAAF7KeiuA?download=1) |
 | FastPointTransformer              | 2cm | 81.2 | 72.5 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EX_xAyhoNXdJg4eSg2vS_bYB8eFAP7A8FPCYfKOS2T13LQ?download=1) |
@@ -58,8 +58,8 @@ We highlight the **best** method in the table below.
 #### 2-2. 3D object detection
 | Model                             | Voxel Size   | mAP@0.25 | mAP@0.5 | Reference |
 |:----------------------------------|:------------:|:--------:|:-------:|:---------:|
-| MinkowskiNet42<sup>&dagger;</sup> | 5cm |  |  | [Checkpoint] |
-| FastPointTransformer              | 5cm |  |  | [Checkpoint] |
+| MinkowskiNet42<sup>&dagger;</sup> | 5cm | 55.3 | 32.8 | [Checkpoint] |
+| FastPointTransformer              | 5cm | 59.1 | 35.4 | [Checkpoint] |
 
 ## Installation
 This repository is developed and tested on
@@ -123,7 +123,7 @@ For example, you can train and evaluate Fast Point Transformer with voxel size 4
 ```
 
 ### (3D Object Detection) Training & Evaluation
-For 3D object detection, you need to prepare an environment and ScanNetV2 dataset following the [Torch-Points3D repository](https://github.com/torch-points3d/torch-points3d).
+For 3D object detection, you need to prepare another conda environment and ScanNetV2 dataset following the [Torch-Points3D repository](https://github.com/torch-points3d/torch-points3d).
 
 ### (Consistency Score) Evaluation
 You need to generate predictions via the following command:
