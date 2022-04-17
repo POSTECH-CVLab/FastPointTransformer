@@ -54,8 +54,8 @@ We use voxel size 4cm for both MinkowskiNet42<sup>&dagger;</sup> and our Fast Po
 | MinkowskiNet42<sup>&dagger;</sup> | 10cm | 70.8 | 60.7 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EVLn0f5noY1Al6Kos9l-0yABM0qZLFt6d4a3yFgTcQ2Vmw?download=1) |
 | FastPointTransformer              | 10cm | 76.1 | 66.5 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ESO1jLNHO89ApdjguUauqsMBCx_TijA26UOeGbF4XxQwoA?download=1) |
 
-#### 2-2. 3D object detection
-| Model                             | Voxel Size   | mAP@0.25 | mAP@0.5 | Reference |
+#### 2-2. 3D object detection with [VoteNet](https://arxiv.org/abs/1904.09664)
+| Backbone                          | Voxel Size   | mAP@0.25 | mAP@0.5 | Reference |
 |:----------------------------------|:------------:|:--------:|:-------:|:---------:|
 | MinkowskiNet42<sup>&dagger;</sup> | 5cm | 55.3 | 32.8 | [Checkpoint] |
 | FastPointTransformer              | 5cm | 59.1 | 35.4 | [Checkpoint] |
