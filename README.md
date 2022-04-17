@@ -39,7 +39,7 @@ We highlight the **best** method in the table below.
 | PointTransformer                  | 18.07 | 76.5 | 70.4 | [Codes from the authors](https://github.com/POSTECH-CVLab/point-transformer) |
 | MinkowskiNet42<sup>&dagger;</sup> | **0.08**  | 74.1 | 67.2 | [checkpoint] |
 | &nbsp;&nbsp;+ rotation average    | 0.66  | 75.1 | 69.0 | - |
-| FastPointTransformer              | 0.14 | 76.6 | 69.2 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ER8KwMTzqAxAvK9KeOZ9U_IBuCAuv4hP6zOWD-3HNO6Xeg) |
+| FastPointTransformer              | 0.14 | 76.6 | 69.2 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ER8KwMTzqAxAvK9KeOZ9U_IBuCAuv4hP6zOWD-3HNO6Xeg?download=1) |
 | &nbsp;&nbsp;+ rotation average    | 1.13  | **77.6** | **71.0** | - |
 
 ### 2. ScanNet V2 validation
