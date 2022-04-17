@@ -98,6 +98,7 @@ class S3DISArea5RGBDataset(S3DISArea5DatasetBase):
         super(S3DISArea5RGBDataset, self).__init__(phase, data_root, transform, ignore_label)
 
     def get_cfl_from_data(self, data):
+        assert data.shape[1] == 7 # XYZ(3) + RGB(3) + label(1)
         xyz, rgb, label = data[:, :3], data[:, 3:6], data[:, 6]
         return (
             xyz.astype(np.float32), rgb.astype(np.float32), label.astype(np.int64)
