@@ -3,7 +3,7 @@ from torch.utils.cpp_extension import BuildExtension, CUDAExtension
 
 setup(
     name='cuda_sparse_ops',
-    author='Chunghyun Park and Yoonwoo Jeong'
+    author='Chunghyun Park and Yoonwoo Jeong',
     version="0.1.0",
     ext_modules=[
         CUDAExtension('cuda_sparse_ops', [

@@ -59,9 +59,7 @@ def train(
     ]
     additional_kwargs = dict()
     if gpus > 1:
-        additional_kwargs["replace_sampler_ddp"] = True # TODO
-        additional_kwargs["sync_batchnorm"] = False # TODO
-        additional_kwargs["strategy"] = "ddp_find_unused_parameters_false"
+        raise NotImplementedError("Multi-gpu training is not supported.")
 
     trainer = pl.Trainer(
         default_root_dir=save_path,
