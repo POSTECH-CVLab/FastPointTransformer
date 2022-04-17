@@ -82,7 +82,7 @@ You can install the environment by using the provided shell script:
 
 ### (3D Semantic Segmentation) Training & Evaluation
 First of all, you need to download the datasets (ScanNet V2 and S3DIS), and preprocess them by following [the official repository of MinkowskiNet](https://github.com/chrischoy/SpatioTemporalSegmentation).
-You can train a model by using the provided python scripts (`train.py` and `eval.py`) with configuration files in the `config` directory.
+After then, you can train a model by using the provided python scripts (`train.py` and `eval.py`) with configuration files in the `config` directory.
 For example, you can train and evaluate Fast Point Transformer with voxel size 4cm on S3DIS dataset via the following commands:
 ```bash
 (fpt) ~/FastPointTransformer$ python train.py config/s3dis/train_fpt.gin
