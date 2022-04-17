@@ -24,4 +24,5 @@ thirdparty/MinkowskiEngine/dist/
 experiments/
 checkpoints/
 consistency_outputs/
+temp/
 sbatch/*.out
