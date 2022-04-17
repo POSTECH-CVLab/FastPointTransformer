@@ -1,13 +1,14 @@
 # Fast Point Transformer
 ### [Project Page](http://cvlab.postech.ac.kr/research/FPT/) | [Paper](https://arxiv.org/abs/2112.04702)
+This repository contains the source code and data for our paper:
 
-[Fast Point Transformer](https://arxiv.org/abs/2112.04702)  
- [Chunghyun Park](https://chrockey.github.io/),
- [Yoonwoo Jeong](https://yoonwoojeong.medium.com/about),
- [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/),
- [Jaesik Park](http://jaesik.info/)<br>
- POSTECH GSAI & CSE<br>
-in CVPR 2022
+>[Fast Point Transformer](https://arxiv.org/abs/2112.04702)  
+> [Chunghyun Park](https://chrockey.github.io/),
+> [Yoonwoo Jeong](https://yoonwoojeong.medium.com/about),
+> [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/),
+> [Jaesik Park](http://jaesik.info/)<br>
+> POSTECH GSAI & CSE<br>
+>in CVPR 2022
 
 <div style="text-align:center">
 <img src="assets/overview.png" alt="An Overview of the proposed pipeline"/>
