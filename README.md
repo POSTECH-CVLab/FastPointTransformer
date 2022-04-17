@@ -80,7 +80,7 @@ You can install the environment by using the provided shell script:
 ```
 
 ### (Semantic Segmentation) Training & Evaluation
-You can train a model by using the provided python scripts (`train.py` and `eval.py`) with configuration files in `config`.
+You can train a model by using the provided python scripts (`train.py` and `eval.py`) with configuration files in the `config` directory.
 For example, you can train and evaluate Fast Point Transformer on S3DIS dataset via following commands:
 ```bash
 (fpt) ~/FastPointTransformer$ python train.py config/s3dis/train_fpt.gin
