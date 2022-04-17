@@ -16,6 +16,8 @@ class ResNetBase(nn.Module):
     def __init__(self, in_channels, out_channels=None, D=3):
         nn.Module.__init__(self)
         assert self.BLOCK is not None
+        self.in_channels = in_channels
+        self.out_channels = out_channels
         self.D = D
 
         self.network_initialization(in_channels, out_channels, D)

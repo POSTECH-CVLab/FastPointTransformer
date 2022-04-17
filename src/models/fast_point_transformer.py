@@ -132,6 +132,8 @@ class FastPointTransformer(nn.Module):
 
     def __init__(self, in_channels, out_channels):
         super(FastPointTransformer, self).__init__()
+        self.in_channels = in_channels
+        self.out_channels = out_channels
         
         self.enc_mlp = nn.Sequential(
             nn.Linear(3, self.ENC_DIM, bias=False),

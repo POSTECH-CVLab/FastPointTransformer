@@ -29,22 +29,27 @@ If you find our code or paper useful, please consider citing our paper:
 ```
 
 ## Experiments
-### 1. 3D semantic segmentation
-We denote MinkowskiNet42 trained with this repository as MinkowskiNet42<sup>&dagger;</sup>, and report rotation-averaged mIoU scores within parentheses.
+### 1. S3DIS Area 5 test
+We denote MinkowskiNet42 trained with this repository as MinkowskiNet42<sup>&dagger;</sup>.
+We use voxel size 4cm for both MinkowskiNet42<sup>&dagger;</sup> and our Fast Point Transformer.
+We highlight the best and second-best methods in **bold** and <u>underline</u>, respectively.
 
+| Model                                   | Latency (sec/scene) | mAcc (%) | mIoU (%) | Reference |
+|:----------------------------------------|--------------------:|:--------:|:--------:|:---------:|
+| PointTransformer                        | 18.07 | 76.5 | <u>70.4</u> | [Codes from authors](https://github.com/POSTECH-CVLab/point-transformer) |
+| MinkowskiNet42<sup>&dagger;</sup>       | **0.08**  | 74.1 | 67.2 | [checkpoint] |
+| &nbsp;&nbsp;+ rotation average          | 0.66  | 75.1 | 69.0 | [checkpoint] |
+| FastPointTransformer                    | <u>0.14</u> | <u>76.6</u> | 69.2 | [checkpoint] |
+| &nbsp;&nbsp;+ rotation average          | 1.13  | **77.6** | **71.0** | [checkpoint] |
+
+### 2. ScanNet V2 validation
 | Model                                   | Dataset           | Voxel Size | mIoU | Reference |
 |:---------------------------------------:|:-----------------:|:----------:|:--------:|:---------:|
 | MinkowskiNet42                          | ScanNet V2 val    | 2cm        | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
 | MinkowskiNet42<sup>&dagger;</sup> <br/> | ScanNet V2 val    | 2cm        | 72.1 | [checkpoint] |
 | FastPointTransformer                    | ScanNet V2 val    | 2cm        | 72.5 | [checkpoint] |
 | MinkowskiNet42<sup>&dagger;</sup> <br/> | S3DIS Area 5 test | 4cm        | 67.2 | [checkpoint] |
-| FastPointTransformer                    | S3DIS Area 5 test | 4cm        | 69.2 | [checkpoint] |
-
-### 2. 3D object detection
-| Model                                   | Dataset        | mAP@0.25 | mAP@0.5 | Reference    |
-|:---------------------------------------:|:--------------:|:--------:|:-------:|:------------:|
-| MinkowskiNet42<sup>&dagger;</sup> <br/> | ScanNet V2 val |          |         | [checkpoint] |
-| FastPointTransformer                    | ScanNet V2 val |          |         | [checkpoint] |
+| FastPointTransformer                    | S3DIS Area 5 test | 4cm        | 69.2 (71.0) | [checkpoint] |
 
 ## Installation
 This repository is developed and tested on

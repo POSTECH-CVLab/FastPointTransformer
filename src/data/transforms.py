@@ -12,8 +12,8 @@ import MinkowskiEngine as ME
 
 
 def homogeneous_coords(coords):
-  assert isinstance(coords, np.ndarray) and coords.shape[1] == 3
-  return np.concatenate([coords, np.ones((len(coords), 1))], axis=1)
+  assert isinstance(coords, torch.Tensor) and coords.shape[1] == 3
+  return torch.cat([coords, torch.ones((len(coords), 1))], dim=1)
 
 
 class Compose(object):

@@ -85,7 +85,7 @@ if __name__ == "__main__":
     parser.add_argument("config", type=str)
     parser.add_argument("--save_path", type=str, default="experiments")
     parser.add_argument("--run_name", type=str, default="default")
-    parser.add_argument("--seed", type=int, default=1234)
+    parser.add_argument("--seed", type=int, default=1235)
     parser.add_argument("--debug", action="store_true")
     args = parser.parse_args()
 
