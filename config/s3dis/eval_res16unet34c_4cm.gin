@@ -1,4 +1,0 @@
-include "./config/s3dis/eval_res16unet34c.gin"
-
-# Augmentation
-DimensionlessCoordinates.voxel_size = 0.04

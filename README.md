@@ -28,6 +28,22 @@ If you find our code or paper useful, please consider citing our paper:
 }
 ```
 
+## Experiments
+### 1. 3D semantic segmentation
+| Model                                   | Dataset             | Voxel Size | mIoU (%) | Reference |
+|:---------------------------------------:|:-------------------:|:----------:|:--------:|:---------:|
+| MinkowskiNet42                          | ScanNet validation  | 2cm        | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
+| MinkowskiNet42<sup>&dagger;</sup> <br/> | ScanNet validation  | 2cm        | 72.1 | [checkpoint] |
+| FastPointTransformer                    | ScanNet validation  | 2cm        | 72.5 | [checkpoint] |
+| MinkowskiNet42<sup>&dagger;</sup> <br/> | S3DIS Area 5 test   | 4cm        | 67.2 | [checkpoint] |
+| FastPointTransformer                    | S3DIS Area 5 test   | 4cm        | 69.2 | [checkpoint] |
+
+### 2. 3D object detection
+| Model                                   | Dataset             | mAP@0.25 | mAP@0.5 | Reference    |
+|:---------------------------------------:|:-------------------:|:--------:|:-------:|:------------:|
+| MinkowskiNet42<sup>&dagger;</sup> <br/> | ScanNet validation  |          |         | [checkpoint] |
+| FastPointTransformer                    | ScanNet validation  |          |         | [checkpoint] |
+
 ## Installation
 This repository is developed and tested on
 
