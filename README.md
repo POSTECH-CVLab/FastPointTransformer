@@ -37,7 +37,7 @@ We highlight the **best** method in the table below.
 | Model                             | Latency (sec) | mAcc (%) | mIoU (%) | Reference |
 |:----------------------------------|--------------------:|:--------:|:--------:|:---------:|
 | PointTransformer                  | 18.07 | 76.5 | 70.4 | [Codes from the authors](https://github.com/POSTECH-CVLab/point-transformer) |
-| MinkowskiNet42<sup>&dagger;</sup> | **0.08**  | 74.1 | 67.2 | [checkpoint] |
+| MinkowskiNet42<sup>&dagger;</sup> | **0.08**  | 74.1 | 67.2 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EZcO0DH6QeNGgIwGFZsmL-4BAlikmHAHlBs4JBcS5XfpVQ?e=2fNOgV?download=1) |
 | &nbsp;&nbsp;+ rotation average    | 0.66  | 75.1 | 69.0 | - |
 | FastPointTransformer              | 0.14 | 76.6 | 69.2 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ER8KwMTzqAxAvK9KeOZ9U_IBuCAuv4hP6zOWD-3HNO6Xeg?download=1) |
 | &nbsp;&nbsp;+ rotation average    | 1.13  | **77.6** | **71.0** | - |
@@ -47,11 +47,11 @@ We highlight the **best** method in the table below.
 | Model                             | Voxel Size  | mAcc (%) | mIoU (%) | Reference |
 |:----------------------------------|------------:|:--------:|:--------:|:---------:|
 | MinkowskiNet42                    | 2cm | - | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
-| MinkowskiNet42<sup>&dagger;</sup> | 2cm | 81.4 | 72.1 | [checkpoint] |
+| MinkowskiNet42<sup>&dagger;</sup> | 2cm | 81.4 | 72.1 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EXmE1pWDZ8lEtJU7SQMjkXcBnhSMXFTdHWXkMAAF7KeiuA?download=1) |
 | FastPointTransformer              | 2cm | 81.2 | 72.5 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EX_xAyhoNXdJg4eSg2vS_bYB8eFAP7A8FPCYfKOS2T13LQ?download=1) |
-| MinkowskiNet42<sup>&dagger;</sup> | 5cm | 76.3 | 67.0 | [checkpoint] |
+| MinkowskiNet42<sup>&dagger;</sup> | 5cm | 76.3 | 67.0 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EZLG00u5JXJDvOi3sYziOIMB1l6HNN5OW9gTQRFWc6EwzA?download=1) |
 | FastPointTransformer              | 5cm | 78.9 | 70.0 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EXbXclfXZGtMpBZY93zi7M8B_tl8rwM65NK1cumN7QM_8g?download=1) |
-| MinkowskiNet42<sup>&dagger;</sup> | 10cm | 70.8 | 60.7 | [checkpoint] |
+| MinkowskiNet42<sup>&dagger;</sup> | 10cm | 70.8 | 60.7 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EVLn0f5noY1Al6Kos9l-0yABM0qZLFt6d4a3yFgTcQ2Vmw?download=1) |
 | FastPointTransformer              | 10cm | 76.1 | 66.5 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ESO1jLNHO89ApdjguUauqsMBCx_TijA26UOeGbF4XxQwoA?download=1) |
 
 #### 2-2. 3D object detection
