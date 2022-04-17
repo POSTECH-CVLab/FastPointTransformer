@@ -156,8 +156,7 @@ class ScanNetRGBDataset(ScanNetDatasetBase):
         return data
 
     def get_cfl_from_data(self, data):
-        assert data.shape[1] == 7 # XYZ(3) + RGB(3) + label(1)
-        xyz, rgb, labels = data[:, :3], data[:, 3:6], data[:, 6]
+        xyz, rgb, labels = data[:, :3], data[:, 3:6], data[:, -2]
         labels = np.array([self.labelmap[x] for x in labels])
         return (
             xyz.astype(np.float32),
