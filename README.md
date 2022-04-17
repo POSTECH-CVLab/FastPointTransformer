@@ -8,7 +8,7 @@ This repository contains the source code and data for our paper:
 > [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/), and
 > [Jaesik Park](http://jaesik.info/)<br>
 > POSTECH GSAI & CSE<br>
-> CVPR, 2022
+> CVPR, New Orleans, 2022
 
 <div style="text-align:center">
 <img src="assets/overview.png" alt="An Overview of the proposed pipeline"/>
