@@ -44,7 +44,7 @@ This repository is developed and tested on
 - PyTorch 1.7.1 and 1.10.0
 - MinkowskiEngine 0.5.4
 
-#### Environment Setup
+### Environment Setup
 One can install the environment by using the provided shell script:
 ```bash
 ~$ git clone --recursive git@github.com:chrockey/FastPointTransformer.git
