@@ -40,7 +40,7 @@ def print_results(classnames, confusion_matrix):
 
 
 def get_rotation_matrices(num_rotations=8):
-    angles = [2 * np.pi / num_rotations * i for i in range(0, num_rotations)]
+    angles = [2 * np.pi / num_rotations * i for i in range(num_rotations)]
     rot_matrices = []
     for angle in angles:
         rot_matrices.append(
