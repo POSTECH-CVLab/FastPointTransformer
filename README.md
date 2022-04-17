@@ -45,7 +45,7 @@ We highlight the **best** method in the table below.
 ### 2. ScanNet V2 validation
 #### 2-1. 3D semantic segmentation
 | Model                             | Voxel Size  | mAcc (%) | mIoU (%) | Reference |
-|----------------------------------:|:-----------:|:--------:|:--------:|:---------:|
+|:----------------------------------|:-----------:|:--------:|:--------:|:---------:|
 | MinkowskiNet42                    | 2cm | - | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
 | MinkowskiNet42<sup>&dagger;</sup> | 2cm | 81.4 | 72.1 | [checkpoint] |
 | FastPointTransformer              | 2cm | 81.2 | 72.5 | [checkpoint] |
