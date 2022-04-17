@@ -30,7 +30,7 @@ class MaxPoolWithPoints(nn.Module):
 # Layers
 ####################################
 @gin.configurable
-class LightweightSelfAttentionLayerLegacy(LocalSelfAttentionBase):
+class LightweightSelfAttentionLayer(LocalSelfAttentionBase):
     def __init__(
         self,
         in_channels,
@@ -45,7 +45,7 @@ class LightweightSelfAttentionLayerLegacy(LocalSelfAttentionBase):
         assert kernel_size % 2 == 1
         assert stride == 1, "Currently, this layer only supports stride == 1"
         assert dilation == 1,"Currently, this layer only supports dilation == 1"
-        super(LightweightSelfAttentionLayerLegacy, self).__init__(kernel_size, stride, dilation, dimension=3)
+        super(LightweightSelfAttentionLayer, self).__init__(kernel_size, stride, dilation, dimension=3)
 
         self.in_channels = in_channels
         self.out_channels = out_channels
@@ -110,224 +110,6 @@ class LightweightSelfAttentionLayerLegacy(LocalSelfAttentionBase):
 
 
 ####################################
-@gin.configurable
-class LightweightSelfAttentionLayer(LocalSelfAttentionBase):
-    def __init__(
-        self,
-        in_channels,
-        out_channels=None,
-        kernel_size=3,
-        stride=1,
-        dilation=1,
-        num_heads=8,
-    ):
-        out_channels = in_channels if out_channels is None else out_channels
-        assert out_channels % num_heads == 0
-        assert kernel_size % 2 == 1
-        assert stride == 1, "Currently, this layer only supports stride == 1"
-        assert dilation == 1,"Currently, this layer only supports dilation == 1"
-        super(LightweightSelfAttentionLayer, self).__init__(kernel_size, stride, dilation, dimension=3)
-
-        self.in_channels = in_channels
-        self.out_channels = out_channels
-        self.kernel_size = kernel_size
-        self.stride = stride
-        self.dilation = dilation
-        self.num_heads = num_heads
-        self.attn_channels = out_channels // num_heads
-
-        self.to_query = nn.Sequential(
-            ME.MinkowskiLinear(in_channels, out_channels),
-            ME.MinkowskiToFeature()
-        )
-        self.to_value = nn.Sequential(
-            ME.MinkowskiLinear(in_channels, out_channels),
-            ME.MinkowskiToFeature()
-        )
-        self.to_out = nn.Linear(out_channels, out_channels)
-
-        self.pos_enc_channels_x = self.attn_channels // 3
-        self.pos_enc_channels_y = self.attn_channels // 3
-        self.pos_enc_channels_z = self.attn_channels - (self.pos_enc_channels_x + self.pos_enc_channels_y)
-        self.inter_pos_enc_x = nn.Parameter(torch.FloatTensor(self.kernel_size, self.num_heads, self.pos_enc_channels_x))
-        self.inter_pos_enc_y = nn.Parameter(torch.FloatTensor(self.kernel_size, self.num_heads, self.pos_enc_channels_y))
-        self.inter_pos_enc_z = nn.Parameter(torch.FloatTensor(self.kernel_size, self.num_heads, self.pos_enc_channels_z))
-        self.intra_pos_mlp = nn.Sequential(
-            nn.Linear(3, 3, bias=False),
-            nn.BatchNorm1d(3),
-            nn.ReLU(inplace=True),
-            nn.Linear(3, in_channels, bias=False),
-            nn.BatchNorm1d(in_channels),
-            nn.ReLU(inplace=True),
-            nn.Linear(in_channels, in_channels)
-        )
-        nn.init.normal_(self.inter_pos_enc_x, 0, 1)
-        nn.init.normal_(self.inter_pos_enc_y, 0, 1)
-        nn.init.normal_(self.inter_pos_enc_z, 0, 1)
-
-    def generate_inter_pos_enc(self):
-        # note that MinkowskiEngine uses key - query but we need query - key
-        inter_pos_enc = []
-        for k in range(self.kernel_size):
-            for j in range(self.kernel_size):
-                for i in range(self.kernel_size):
-                    inter_pos_enc.append(
-                        torch.cat([self.inter_pos_enc_x[i], self.inter_pos_enc_y[j], self.inter_pos_enc_z[k]], dim=-1).unsqueeze(0)
-                    )
-        return torch.cat(inter_pos_enc, dim=0)
-
-    def forward(self, stensor, norm_points):
-        dtype = stensor._F.dtype
-        device = stensor._F.device
-
-        # query, key, value, and relative positional encoding
-        intra_pos_enc = self.intra_pos_mlp(norm_points)
-        stensor = stensor + intra_pos_enc
-        q = self.to_query(stensor).view(-1, self.num_heads, self.attn_channels).contiguous()
-        v = self.to_value(stensor).view(-1, self.num_heads, self.attn_channels).contiguous()
-
-        # key-query map
-        kernel_map, out_key = self.get_kernel_map_and_out_key(stensor)
-        kq_map = self.key_query_map_from_kernel_map(kernel_map)
-
-        # attention weights with softmax normalization
-        attn = torch.zeros((kq_map.shape[1], self.num_heads), dtype=dtype, device=device)
-        norm_q = F.normalize(q, p=2, dim=-1)
-        inter_pos_enc = self.generate_inter_pos_enc()
-        norm_pos_enc = F.normalize(inter_pos_enc, p=2, dim=-1)
-        attn = ops.dot_product_cuda(norm_q, norm_pos_enc, attn, kq_map)
-
-        # aggregation & the output
-        out_F = torch.zeros((len(q), self.num_heads, self.attn_channels),
-                            dtype=dtype,
-                            device=device)
-        kq_indices = self.key_query_indices_from_key_query_map(kq_map)
-        out_F = ops.scalar_attention_cuda(attn, v, out_F, kq_indices)
-        out_F = self.to_out(out_F.view(-1, self.out_channels).contiguous())
-        return ME.SparseTensor(out_F,
-                               coordinate_map_key=out_key,
-                               coordinate_manager=stensor.coordinate_manager)
-
-
-@gin.configurable
-class LightweightSelfAttentionLayerA(LightweightSelfAttentionLayer):
-    def __init__(
-        self,
-        in_channels,
-        out_channels=None,
-        kernel_size=3,
-        stride=1,
-        dilation=1,
-        num_heads=8,
-    ):
-        out_channels = in_channels if out_channels is None else out_channels
-        assert out_channels % num_heads == 0
-        assert kernel_size % 2 == 1
-        assert stride == 1, "Currently, this layer only supports stride == 1"
-        assert dilation == 1,"Currently, this layer only supports dilation == 1"
-        super(LightweightSelfAttentionLayerA, self).__init__(
-            in_channels, out_channels, kernel_size, stride, dilation, num_heads
-        )
-
-        self.intra_pos_mlp = nn.Sequential(
-            nn.Linear(3, 3),
-            nn.ReLU(inplace=True),
-            nn.Linear(3, in_channels)
-        ) # overriding
-
-
-@gin.configurable
-class LightweightSelfAttentionLayerB(LocalSelfAttentionBase):
-    def __init__(
-        self,
-        in_channels,
-        out_channels=None,
-        kernel_size=3,
-        stride=1,
-        dilation=1,
-        num_heads=8,
-    ):
-        out_channels = in_channels if out_channels is None else out_channels
-        assert out_channels % num_heads == 0
-        assert kernel_size % 2 == 1
-        assert stride == 1, "Currently, this layer only supports stride == 1"
-        assert dilation == 1,"Currently, this layer only supports dilation == 1"
-        super(LightweightSelfAttentionLayerB, self).__init__(kernel_size, stride, dilation, dimension=3)
-
-        self.in_channels = in_channels
-        self.out_channels = out_channels
-        self.kernel_size = kernel_size
-        self.stride = stride
-        self.dilation = dilation
-        self.num_heads = num_heads
-        self.attn_channels = out_channels // num_heads
-
-        self.to_query = nn.Sequential(
-            ME.MinkowskiLinear(in_channels, out_channels),
-            ME.MinkowskiToFeature()
-        )
-        self.to_value = nn.Sequential(
-            ME.MinkowskiLinear(in_channels, out_channels),
-            ME.MinkowskiToFeature()
-        )
-        self.to_out = nn.Linear(out_channels, out_channels)
-
-        self.inter_pos_mlp = nn.Sequential(
-            nn.Linear(3, 3),
-            nn.ReLU(inplace=True),
-            nn.Linear(3, out_channels)
-        )
-        self.intra_pos_mlp = nn.Sequential(
-            nn.Linear(3, 3),
-            nn.ReLU(inplace=True),
-            nn.Linear(3, in_channels)
-        )
-        self.rel_pos = nn.Parameter(self.generate_rel_pos(), requires_grad=False) # query - key
-
-    def generate_rel_pos(self):
-        # note that MinkowskiEngine uses key - query but we need query - key
-        rel_pos = []
-        pos_max = self.kernel_size // 2
-        for pos_z in reversed(range(-pos_max, pos_max + 1)):
-            for pos_y in reversed(range(-pos_max, pos_max + 1)):
-                for pos_x in reversed(range(-pos_max, pos_max + 1)):
-                    rel_pos.append([pos_x, pos_y, pos_z])
-        return torch.FloatTensor(rel_pos)
-
-    def forward(self, stensor, norm_points):
-        dtype = stensor._F.dtype
-        device = stensor._F.device
-
-        # query, key, value, and relative positional encoding
-        intra_pos_enc = self.intra_pos_mlp(norm_points)
-        stensor = stensor + intra_pos_enc
-        q = self.to_query(stensor).view(-1, self.num_heads, self.attn_channels).contiguous()
-        v = self.to_value(stensor).view(-1, self.num_heads, self.attn_channels).contiguous()
-        r = self.inter_pos_mlp(self.rel_pos).view(-1, self.num_heads, self.attn_channels).contiguous()
-
-        # key-query map
-        kernel_map, out_key = self.get_kernel_map_and_out_key(stensor)
-        kq_map = self.key_query_map_from_kernel_map(kernel_map)
-
-        # attention weights with softmax normalization
-        attn = torch.zeros((kq_map.shape[1], self.num_heads), dtype=dtype, device=device)
-        norm_q = F.normalize(q, p=2, dim=-1)
-        norm_r = F.normalize(r, p=2, dim=-1)
-        attn = ops.dot_product_cuda(norm_q, norm_r, attn, kq_map)
-
-        # aggregation & the output
-        out_F = torch.zeros((len(q), self.num_heads, self.attn_channels),
-                            dtype=dtype,
-                            device=device)
-        kq_indices = self.key_query_indices_from_key_query_map(kq_map)
-        out_F = ops.scalar_attention_cuda(attn, v, out_F, kq_indices)
-        out_F = self.to_out(out_F.view(-1, self.out_channels).contiguous())
-        return ME.SparseTensor(out_F,
-                               coordinate_map_key=out_key,
-                               coordinate_manager=stensor.coordinate_manager)
-
-
-####################################
 # Blocks
 ####################################
 @gin.configurable
@@ -360,21 +142,6 @@ class ResidualBlockWithPointsBase(nn.Module):
 @gin.configurable
 class LightweightSelfAttentionBlock(ResidualBlockWithPointsBase):
     LAYER = LightweightSelfAttentionLayer
-
-
-@gin.configurable
-class LightweightSelfAttentionBlockLegacy(ResidualBlockWithPointsBase):
-    LAYER = LightweightSelfAttentionLayerLegacy
-
-
-@gin.configurable
-class LightweightSelfAttentionBlockA(ResidualBlockWithPointsBase):
-    LAYER = LightweightSelfAttentionLayerA
-
-
-@gin.configurable
-class LightweightSelfAttentionBlockB(ResidualBlockWithPointsBase):
-    LAYER = LightweightSelfAttentionLayerB
 
 
 ####################################
@@ -537,31 +304,9 @@ class FastPointTransformer(nn.Module):
 
 
 @gin.configurable
-class FastPointTransformerLegacy(FastPointTransformer):
-    LAYER = LightweightSelfAttentionLayerLegacy
-    BLOCK = LightweightSelfAttentionBlockLegacy
-
-
-@gin.configurable
-class FastPointTransformerLegacySmall(FastPointTransformerLegacy):
-    LAYERS = (2, 2, 2, 2, 2, 2, 2, 2)
-
-
-@gin.configurable
-class FastPointTransformerLegacySmaller(FastPointTransformerLegacy):
-    LAYERS = (1, 1, 1, 1, 1, 1, 1, 1)
-
-
-@gin.configurable
-class FastPointTransformerA(FastPointTransformer):
-    LAYER = LightweightSelfAttentionLayerA
-    BLOCK = LightweightSelfAttentionBlockA
-
-
-@gin.configurable
-class FastPointTransformerB(FastPointTransformer):
-    LAYER = LightweightSelfAttentionLayerB
-    BLOCK = LightweightSelfAttentionBlockB
+class FastPointTransformer(FastPointTransformer):
+    LAYER = LightweightSelfAttentionLayer
+    BLOCK = LightweightSelfAttentionBlock
 
 
 @gin.configurable

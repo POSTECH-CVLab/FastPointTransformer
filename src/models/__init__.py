@@ -1,31 +1,11 @@
 import logging
 
 from src.models.spvcnn import SPVCNN
-from src.models.fast_point_transformer import (
-    FastPointTransformer, 
-    FastPointTransformerA, 
-    FastPointTransformerB, 
-    FastPointTransformerSmall,
-    FastPointTransformerSmaller, 
-    FastPointTransformerLegacy,
-    FastPointTransformerLegacySmall,
-    FastPointTransformerLegacySmaller,
-)
 import src.models.resnet as resnets
 import src.models.resunet as resunets
-import src.models.transformer as transformers
+import src.models.fast_point_transformer as transformers
 
-MODELS = [
-    SPVCNN, 
-    FastPointTransformer,
-    FastPointTransformerA,
-    FastPointTransformerB,
-    FastPointTransformerSmall,
-    FastPointTransformerSmaller,
-    FastPointTransformerLegacy,
-    FastPointTransformerLegacySmall,
-    FastPointTransformerLegacySmaller,
-]
+MODELS = [SPVCNN]
 
 
 def add_models(module):
