@@ -1,13 +1,14 @@
 import json
 from concurrent.futures import ProcessPoolExecutor
+from pathlib import Path
 
 import pandas as pd
 import numpy as np
 from plyfile import PlyData, PlyElement
 
 
-SCANNET_RAW_PATH = '/root/data/scannetv2_raw' # you may need to modify this path.
-SCANNET_OUT_PATH = SCANNET_RAW_PATH / 'scannet_processed'
+SCANNET_RAW_PATH = Path('/root/data/scannetv2_raw') # you may need to modify this path.
+SCANNET_OUT_PATH = Path('/root/data/temp-temp-temp/scannetv2_processed')
 TRAIN_DEST = 'train'
 TEST_DEST = 'test'
 SUBSETS = {TRAIN_DEST: 'scans', TEST_DEST: 'scans_test'}

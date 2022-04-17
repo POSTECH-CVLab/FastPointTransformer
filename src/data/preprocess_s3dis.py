@@ -7,8 +7,8 @@ from tqdm import tqdm
 from plyfile import PlyData, PlyElement
 
 
-STANFORD_3D_IN_PATH = '/root/data/S3DIS/Stanford3dDataset_v1.2/' # you may need to modify this path.
-STANFORD_3D_OUT_PATH = '/root/data/S3DIS/s3dis_processed'
+STANFORD_3D_IN_PATH = '/root/data/s3dis/Stanford3dDataset_v1.2/' # you may need to modify this path.
+STANFORD_3D_OUT_PATH = '/root/data/s3dis/s3dis_processed'
 IGNORE_LABEL = 255
 
 
@@ -42,7 +42,7 @@ def save_point_cloud(points_3d, filename, binary=True, with_label=False, verbose
     python_types = (float, float, float, int, int, int)
     npy_types = [('x', 'f4'), ('y', 'f4'), ('z', 'f4'), ('red', 'u1'), ('green', 'u1'),
                  ('blue', 'u1')]
-  if binary is True:
+  if binary:
     # Format into NumPy structured array
     vertices = []
     for row_idx in range(points_3d.shape[0]):
@@ -54,22 +54,7 @@ def save_point_cloud(points_3d, filename, binary=True, with_label=False, verbose
     # Write
     PlyData([el]).write(filename)
   else:
-    # PlyData([el], text=True).write(filename)
-    with open(filename, 'w') as f:
-      f.write('ply\n'
-              'format ascii 1.0\n'
-              'element vertex %d\n'
-              'property float x\n'
-              'property float y\n'
-              'property float z\n'
-              'property uchar red\n'
-              'property uchar green\n'
-              'property uchar blue\n'
-              'property uchar alpha\n'
-              'end_header\n' % points_3d.shape[0])
-      for row_idx in range(points_3d.shape[0]):
-        X, Y, Z, R, G, B = points_3d[row_idx]
-        f.write('%f %f %f %d %d %d 0\n' % (X, Y, Z, R, G, B))
+    raise NotImplementedError
   if verbose is True:
     print('Saved point cloud to: %s' % filename)
 
@@ -166,18 +151,5 @@ class Stanford3DDatasetConverter:
         save_point_cloud(pointcloud, out_file, with_label=True, verbose=False)
 
 
-def generate_splits(stanford_out_path, split_path='./meta_data'):
-  """Takes preprocessed out path and generate txt files"""
-  mkdir_p(split_path)
-  for i in range(1, 7):
-    curr_path = os.path.join(stanford_out_path, f'Area_{i}')
-    files = glob.glob(os.path.join(curr_path, '*.ply'))
-    files = [os.path.relpath(full_path, stanford_out_path) for full_path in files]
-    out_txt = os.path.join(split_path, f'area{i}.txt')
-    with open(out_txt, 'w') as f:
-      f.write('\n'.join(files))
-
-
 if __name__ == '__main__':
   Stanford3DDatasetConverter.convert_to_ply(STANFORD_3D_IN_PATH, STANFORD_3D_OUT_PATH)
-  generate_splits(STANFORD_3D_OUT_PATH)
