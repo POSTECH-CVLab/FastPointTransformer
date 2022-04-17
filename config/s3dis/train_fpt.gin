@@ -1,0 +1,7 @@
+# The code should be run on a GPU with at least 80GB memory (e.g., A100-80GB).
+include "./config/s3dis/train_res16unet34c.gin"
+
+# Model
+train.model_name = "FastPointTransformer"
+FastPointTransformer.in_channels = %in_channels
+FastPointTransformer.out_channels = %out_channels

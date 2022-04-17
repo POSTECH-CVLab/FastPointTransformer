@@ -1,6 +1,0 @@
-include "./config/s3dis/train_res16unet34c_4cm_batch8_shorter_gsai.gin"
-
-# Model
-train.model_name = "FastPointTransformerLegacy"
-FastPointTransformerLegacy.in_channels = %in_channels
-FastPointTransformerLegacy.out_channels = %out_channels

@@ -1,7 +1,0 @@
-include "./config/s3dis/default.gin"
-
-# Model
-train.lightning_module_name = "LitSegMinkowskiModule"
-train.model_name = "MinkowskiNet32"
-Res16UNetBase.in_channels = %in_channels
-Res16UNetBase.out_channels = %out_channels

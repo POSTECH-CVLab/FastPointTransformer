@@ -7,7 +7,7 @@ out_channels = 13
 # Data module
 S3DISArea5RGBDataModule.data_root = "/root/data/s3dis" # you need to modify this according to your data.
 S3DISArea5RGBDataModule.train_batch_size = 8
-S3DISArea5RGBDataModule.val_batch_size = 2
+S3DISArea5RGBDataModule.val_batch_size = 1
 S3DISArea5RGBDataModule.train_num_workers = 8
 S3DISArea5RGBDataModule.val_num_workers = 4
 S3DISArea5RGBDataModule.collation_type = "collate_minkowski"
@@ -30,10 +30,10 @@ S3DISArea5RGBDataModule.eval_transforms = [
 ]
 
 # Augmentation
-DimensionlessCoordinates.voxel_size = 0.05
-RandomCrop.x = 80
-RandomCrop.y = 80
-RandomCrop.z = 80
+DimensionlessCoordinates.voxel_size = 0.04
+RandomCrop.x = 100
+RandomCrop.y = 100
+RandomCrop.z = 100
 RandomCrop.min_cardinality = 100
 RandomCrop.max_retries = 40
 RandomHorizontalFlip.upright_axis = "z"
@@ -60,7 +60,7 @@ train.check_val_every_n_epoch = 1
 train.refresh_rate_per_second = 1
 train.best_metric = "val_mIoU"
 train.max_epoch = None
-train.max_step = 60000
+train.max_step = 40000
 
 # Logging
 logged_hparams.keys = [

@@ -1,4 +1,4 @@
-include "./config/s3dis/default.gin"
+include "./config/s3dis/train_default.gin"
 
 # Model
 train.lightning_module_name = "LitSegMinkowskiModule"
