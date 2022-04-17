@@ -86,7 +86,7 @@ First of all, you need to download the datasets (ScanNet V2 and S3DIS), and prep
 (fpt) ~/FastPointTransformer$ python src/data/preprocess_scannet.py # you need to modify the data path
 (fpt) ~/FastPointTransformer$ python src/data/preprocess_s3dis.py # you need to modify the data path
 ```
-And then, locate the provided meta data of each dataset (`src/data/meta_data`) with the preprocessed dataset following the below structure:
+And then, locate the provided meta data of each dataset (`src/data/meta_data`) with the preprocessed dataset following the structure below:
 
 ```
 ${data_dir}
