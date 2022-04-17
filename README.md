@@ -88,34 +88,30 @@ First of all, you need to download the datasets (ScanNet V2 and S3DIS), and prep
 ```
 And then, locate the provided meta data of each dataset (`src/data/meta_data`) with the preprocessed dataset following the below structure:
 
-    ```
-    ${data_dir}
-    |--scannetv2
-    |    |--meta_data
-    |    |    |--scannetv2_train.txt
-    |    |    |--scannetv2_val.txt
-    |    |    |--scannetv2_trainval.txt
-    |    |    `--scannetv2_test.txt
-    |    |--scannet_processed
-    |    |    |--train
-    |    |    |    |--scene0000_00.ply
-    |    |    |    |--scene0000_01.ply
-    |    |    |            ...
-    |    |    `--test
-    |--s3dis
-    |    |--meta_data
-    |    |    |--area1.txt
-    |    |    |--area2.txt
-    |    |    |            ...
-    |    |--s3dis_processed
-    |    |    |--Area_1
-    |    |    |    |--conferenceRoom_1.ply
-    |    |    |    |--conferenceRoom_2.ply
-    |    |    |            ...
-    |    |    |--Area_2
-    |    |    |            ...
-    |    |    `--Area_5
-    ```
+```
+${data_dir}
+|--scannetv2
+|    |--meta_data
+|    |    |--scannetv2_train.txt
+|    |    |--scannetv2_val.txt
+|    |                 ...
+|    `--scannet_processed
+|         |--train
+|         |    |--scene0000_00.ply
+|         |    |--scene0000_01.ply
+|         |            ...
+|         `--test
+`--s3dis
+      |--meta_data
+      |    |--area1.txt
+      |    |--area2.txt
+      |                 ...
+      `--s3dis_processed
+          |--Area_1
+          |    |--conferenceRoom_1.ply
+          |    |--conferenceRoom_2.ply
+                        ...
+```
 
 After then, you can train a model by using the provided python scripts (`train.py` and `eval.py`) with configuration files in the `config` directory.
 For example, you can train and evaluate Fast Point Transformer with voxel size 4cm on S3DIS dataset via the following commands:
