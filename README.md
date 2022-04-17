@@ -30,9 +30,9 @@ If you find our code or paper useful, please consider citing our paper:
 
 ## Experiments
 ### 1. 3D semantic segmentation
-We denote MinkowskiNet42 trained with this repo as MinkowskiNet42<sup>&dagger;</sup>, and report rotation-averaged mIoU scores in parentheses.
+We denote MinkowskiNet42 trained with this repo as MinkowskiNet42<sup>&dagger;</sup>, and report rotation-averaged mIoU scores within parentheses.
 
-| Model                                   | Dataset           | Voxel Size | mIoU (%) | Reference |
+| Model                                   | Dataset           | Voxel Size | mIoU | Reference |
 |:---------------------------------------:|:-----------------:|:----------:|:--------:|:---------:|
 | MinkowskiNet42                          | ScanNet V2 val    | 2cm        | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
 | MinkowskiNet42<sup>&dagger;</sup> <br/> | ScanNet V2 val    | 2cm        | 72.1 | [checkpoint] |
