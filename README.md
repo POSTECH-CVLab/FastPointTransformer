@@ -5,7 +5,7 @@ This repository contains the source code and data for our paper:
 >[Fast Point Transformer](https://arxiv.org/abs/2112.04702)  
 > [Chunghyun Park](https://chrockey.github.io/),
 > [Yoonwoo Jeong](https://yoonwoojeong.medium.com/about),
-> [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/),
+> [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/), and
 > [Jaesik Park](http://jaesik.info/)<br>
 > POSTECH GSAI & CSE<br>
 > CVPR, 2022
