@@ -39,7 +39,7 @@ We highlight the **best** method in the table below.
 | PointTransformer                  | 18.07 | 76.5 | 70.4 | [Codes from the authors](https://github.com/POSTECH-CVLab/point-transformer) |
 | MinkowskiNet42<sup>&dagger;</sup> | **0.08**  | 74.1 | 67.2 | [checkpoint] |
 | &nbsp;&nbsp;+ rotation average    | 0.66  | 75.1 | 69.0 | - |
-| FastPointTransformer              | 0.14 | 76.6 | 69.2 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ER8KwMTzqAxAvK9KeOZ9U_IBuCAuv4hP6zOWD-3HNO6Xeg?download=1) |
+| FastPointTransformer              | 0.14 | 76.6 | 69.2 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ER8KwMTzqAxAvK9KeOZ9U_IBuCAuv4hP6zOWD-3HNO6Xeg) |
 | &nbsp;&nbsp;+ rotation average    | 1.13  | **77.6** | **71.0** | - |
 
 ### 2. ScanNet V2 validation
@@ -48,11 +48,11 @@ We highlight the **best** method in the table below.
 |:----------------------------------|------------:|:--------:|:--------:|:---------:|
 | MinkowskiNet42                    | 2cm | - | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
 | MinkowskiNet42<sup>&dagger;</sup> | 2cm | 81.4 | 72.1 | [checkpoint] |
-| FastPointTransformer              | 2cm | 81.2 | 72.5 | [checkpoint] |
+| FastPointTransformer              | 2cm | 81.2 | 72.5 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EX_xAyhoNXdJg4eSg2vS_bYB8eFAP7A8FPCYfKOS2T13LQ?download=1) |
 | MinkowskiNet42<sup>&dagger;</sup> | 5cm | 76.3 | 67.0 | [checkpoint] |
-| FastPointTransformer              | 5cm | 78.9 | 70.0 | [checkpoint] |
+| FastPointTransformer              | 5cm | 78.9 | 70.0 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EXbXclfXZGtMpBZY93zi7M8B_tl8rwM65NK1cumN7QM_8g?download=1) |
 | MinkowskiNet42<sup>&dagger;</sup> | 10cm | 70.8 | 60.7 | [checkpoint] |
-| FastPointTransformer              | 10cm | 76.1 | 66.5 | [checkpoint] |
+| FastPointTransformer              | 10cm | 76.1 | 66.5 | [checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ESO1jLNHO89ApdjguUauqsMBCx_TijA26UOeGbF4XxQwoA?download=1) |
 
 #### 2-2. 3D object detection
 | Model                             | mAP@0.25 | mAP@0.5 | Reference |
