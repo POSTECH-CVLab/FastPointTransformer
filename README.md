@@ -118,7 +118,7 @@ After then, you can train a model by using the provided python scripts (`train.p
 For example, you can train and evaluate Fast Point Transformer with voxel size 4cm on S3DIS dataset via the following commands:
 ```bash
 (fpt) ~/FastPointTransformer$ python train.py config/s3dis/train_fpt.gin
-(fpt) ~/FastPointTransformer$ python eval.py config/s3dis/eval_fpt.gin {checkpoint_file}
+(fpt) ~/FastPointTransformer$ python eval.py config/s3dis/eval_fpt.gin {checkpoint_file} # use -r option for rotation averaging.
 ```
 
 ### (3D Object Detection) Training & Evaluation
