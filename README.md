@@ -34,7 +34,7 @@ We denote MinkowskiNet42 trained with this repository as MinkowskiNet42<sup>&dag
 We use voxel size 4cm for both MinkowskiNet42<sup>&dagger;</sup> and our Fast Point Transformer.
 We highlight the **best** method in the table below.
 
-| Model                             | Latency (sec/scene) | mAcc (%) | mIoU (%) | Reference |
+| Model                             | Latency (sec) | mAcc (%) | mIoU (%) | Reference |
 |:----------------------------------|--------------------:|:--------:|:--------:|:---------:|
 | PointTransformer                  | 18.07 | 76.5 | 70.4 | [Codes from authors](https://github.com/POSTECH-CVLab/point-transformer) |
 | MinkowskiNet42<sup>&dagger;</sup> | **0.08**  | 74.1 | 67.2 | [checkpoint] |
