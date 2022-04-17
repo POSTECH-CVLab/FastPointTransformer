@@ -56,7 +56,7 @@ We highlight the **best** method in the table below.
 
 #### 2-2. 3D object detection
 | Model                             | mAP@0.25 | mAP@0.5 | Reference |
-|:---------------------------------:|:--------:|:-------:|:---------:|
+|:----------------------------------|:--------:|:-------:|:---------:|
 | MinkowskiNet42<sup>&dagger;</sup> |  |  | [checkpoint] |
 | FastPointTransformer              |  |  | [checkpoint] |
 
