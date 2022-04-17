@@ -1,11 +1,9 @@
 import gin
 import torch
-import torch.nn as nn
 import MinkowskiEngine as ME
 from MinkowskiEngine.modules.resnet_block import BasicBlock
 
 from src.models.resnet import ResNetBase
-from src.models.common import downsample_points, downsample_embeddings
 
 
 @gin.configurable
@@ -162,54 +160,3 @@ class Res16UNet34CSmall(Res16UNet34C):
 @gin.configurable
 class Res16UNet34CSmaller(Res16UNet34C):
     LAYERS = (1, 1, 1, 1, 1, 1, 1, 1)
-
-
-@gin.configurable
-class CenRes16UNet34CSmaller(Res16UNet34CSmaller):
-    ENC_DIM = 32
-
-    def network_initialization(self, in_channels, out_channels, D=3):
-        super(CenRes16UNet34CSmaller, self).network_initialization(in_channels, out_channels, D)
-        self.conv0p1s1 = self.LAYER(in_channels + self.ENC_DIM, self.INIT_DIM, kernel_size=5, dimension=D)
-        self.enc_mlp = nn.Sequential(
-            nn.Linear(D, self.ENC_DIM, bias=False),
-            nn.BatchNorm1d(self.ENC_DIM),
-            nn.Tanh(),
-            nn.Linear(self.ENC_DIM, self.ENC_DIM, bias=False),
-            nn.BatchNorm1d(self.ENC_DIM),
-            nn.Tanh()
-        )
-        self.final = nn.Sequential(
-            nn.Linear(self.PLANES[7] + self.ENC_DIM, self.PLANES[7], bias=False),
-            nn.BatchNorm1d(self.PLANES[7]),
-            nn.ReLU(inplace=True),
-            nn.Linear(self.PLANES[7], out_channels)
-        )
-
-    @torch.no_grad()
-    def normalize_points(self, points, centroids, tensor_map):
-        tensor_map = tensor_map if tensor_map.dtype == torch.int64 else tensor_map.long()
-        norm_points = points - centroids[tensor_map]
-        return norm_points
-
-    def voxelize(self, x: ME.TensorField):
-        cm = x.coordinate_manager
-        points = x.C[:, 1:]
-        out = x.sparse()
-        size = torch.Size([len(out), len(x)])
-        tensor_map, field_map = cm.field_to_sparse_map(x.coordinate_key, out.coordinate_key)
-        points_p1, _ = downsample_points(points, tensor_map, field_map, size)
-        norm_points = self.normalize_points(points, points_p1, tensor_map)
-
-        emb = self.enc_mlp(norm_points)
-        down_emb = downsample_embeddings(emb, tensor_map, size, mode="avg")
-        out = ME.SparseTensor(
-            torch.cat([out.F, down_emb], dim=1),
-            coordinate_map_key=out.coordinate_map_key,
-            coordinate_manager=cm
-        )
-        return out, emb
-
-    def devoxelize(self, out: ME.SparseTensor, x: ME.TensorField, emb: torch.Tensor):
-        out = self.final(torch.cat([out.slice(x).F, emb], dim=1))
-        return out

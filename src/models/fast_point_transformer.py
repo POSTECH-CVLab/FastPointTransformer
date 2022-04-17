@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import MinkowskiEngine as ME
 
-from src.models.transformer_base import LocalSelfAttentionBase
+from src.models.transformer_base import LocalSelfAttentionBase, ResidualBlockWithPointsBase
 from src.models.common import stride_centroids, downsample_points, downsample_embeddings
 import src.cuda_ops.functions.sparse_ops as ops
 
@@ -112,33 +112,6 @@ class LightweightSelfAttentionLayer(LocalSelfAttentionBase):
 ####################################
 # Blocks
 ####################################
-@gin.configurable
-class ResidualBlockWithPointsBase(nn.Module):
-    LAYER = None
-
-    def __init__(self, in_channels, out_channels=None, kernel_size=3):
-        out_channels = in_channels if out_channels is None else out_channels
-        assert self.LAYER is not None
-        super(ResidualBlockWithPointsBase, self).__init__()
-
-        self.layer1 = self.LAYER(in_channels, out_channels, kernel_size)
-        self.norm1 = ME.MinkowskiBatchNorm(out_channels)
-        self.layer2 = self.LAYER(out_channels, out_channels, kernel_size)
-        self.norm2 = ME.MinkowskiBatchNorm(out_channels)
-        self.relu = ME.MinkowskiReLU(inplace=True)
-
-    def forward(self, stensor, norm_points):
-        residual = stensor
-        out = self.layer1(stensor, norm_points)
-        out = self.norm1(out)
-        out = self.relu(out)
-        out = self.layer2(out, norm_points)
-        out = self.norm2(out)
-        out += residual
-        out = self.relu(out)
-        return out
-
-
 @gin.configurable
 class LightweightSelfAttentionBlock(ResidualBlockWithPointsBase):
     LAYER = LightweightSelfAttentionLayer

@@ -1,44 +1,5 @@
 import torch
-import torch.nn as nn
 import MinkowskiEngine as ME
-
-
-class MinkowskiLayerNorm(nn.Module):
-    def __init__(
-        self,
-        normalized_shape,
-        eps=1e-5,
-        elementwise_affine=True,
-    ):
-        super(MinkowskiLayerNorm, self).__init__()
-        self.ln = nn.LayerNorm(
-            normalized_shape, eps, elementwise_affine,
-        )
-
-    def forward(self, x):
-        if isinstance(x, ME.TensorField):
-            return ME.TensorField(
-                self.ln(x.F),
-                coordinate_field_map_key=x.coordinate_field_map_key,
-                coordinate_manager=x.coordinate_manager,
-                quantization_mode=x.quantization_mode,
-            )
-        elif isinstance(x, ME.SparseTensor):
-            return ME.SparseTensor(
-                self.ln(x.F),
-                cooridnate_map_key=x.coordinate_map_key,
-                coordinate_manager=x.coordinate_manager,
-            )
-        else:
-            return self.ln(x)
-
-    def __repr__(self):
-        s = "(normalized_shape={}, eps={}, elementwise_affine={})".format(
-            self.ln.normalized_shape,
-            self.ln.eps,
-            self.ln.elementwise_affine
-        )
-        return self.__class__.__name__ + s
 
 
 @torch.no_grad()

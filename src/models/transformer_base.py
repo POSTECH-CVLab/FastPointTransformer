@@ -51,3 +51,29 @@ class LocalSelfAttentionBase(nn.Module):
         kq_indices = kq_map.clone()
         kq_indices[0] = kq_indices[0] // self.kernel_volume
         return kq_indices
+
+
+class ResidualBlockWithPointsBase(nn.Module):
+    LAYER = None
+
+    def __init__(self, in_channels, out_channels=None, kernel_size=3):
+        out_channels = in_channels if out_channels is None else out_channels
+        assert self.LAYER is not None
+        super(ResidualBlockWithPointsBase, self).__init__()
+
+        self.layer1 = self.LAYER(in_channels, out_channels, kernel_size)
+        self.norm1 = ME.MinkowskiBatchNorm(out_channels)
+        self.layer2 = self.LAYER(out_channels, out_channels, kernel_size)
+        self.norm2 = ME.MinkowskiBatchNorm(out_channels)
+        self.relu = ME.MinkowskiReLU(inplace=True)
+
+    def forward(self, stensor, norm_points):
+        residual = stensor
+        out = self.layer1(stensor, norm_points)
+        out = self.norm1(out)
+        out = self.relu(out)
+        out = self.layer2(out, norm_points)
+        out = self.norm2(out)
+        out += residual
+        out = self.relu(out)
+        return out
