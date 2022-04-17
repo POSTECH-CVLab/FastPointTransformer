@@ -89,29 +89,29 @@ And then, locate the provided meta data of each dataset (`src/data/meta_data`) w
 
 ```
 ${data_dir}
-|--scannetv2
-|    |--meta_data
-|    |    |--scannetv2_train.txt
-|    |    |--scannetv2_val.txt
-|    |                 ...
-|    `--scannet_processed
-|         |--train
-|         |    |--scene0000_00.ply
-|         |    |--scene0000_01.ply
-|         |            ...
-|         `--test
-`--s3dis
-      |--meta_data
-      |    |--area1.txt
-      |    |--area2.txt
-      |                 ...
-      `--s3dis_processed
-          |--Area_1
-          |    |--conferenceRoom_1.ply
-          |    |--conferenceRoom_2.ply
-          |             ...
-          |--Area_2
-                        ...
+├── scannetv2
+│   ├── meta_data
+│   │   ├── scannetv2_train.txt
+│   │   ├── scannetv2_val.txt
+│   │   └── ...
+│   └── scannet_processed
+│       ├── train
+│       │   ├── scene0000_00.ply
+│       │   ├── scene0000_01.ply
+│       │   └── ...
+│       └── test
+└── s3dis
+    ├── meta_data
+    │   ├──area1.txt
+    │   ├──area2.txt
+    │   └── ...
+    └── s3dis_processed
+        ├── Area_1
+        │   ├── conferenceRoom_1.ply
+        │   ├── conferenceRoom_2.ply
+        │   └── ...
+        ├── Area_2
+        └── ...
 ```
 
 After then, you can train a model by using the provided python scripts (`train.py` and `eval.py`) with configuration files in the `config` directory.
