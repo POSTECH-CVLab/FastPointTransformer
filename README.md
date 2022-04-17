@@ -36,7 +36,7 @@ We highlight the **best** method in the table below.
 
 | Model                             | Latency (sec) | mAcc (%) | mIoU (%) | Reference |
 |:----------------------------------|--------------------:|:--------:|:--------:|:---------:|
-| PointTransformer                  | 18.07 | 76.5 | 70.4 | [Official codes](https://github.com/POSTECH-CVLab/point-transformer) |
+| PointTransformer                  | 18.07 | 76.5 | 70.4 | [Codes from the authors](https://github.com/POSTECH-CVLab/point-transformer) |
 | MinkowskiNet42<sup>&dagger;</sup> | **0.08**  | 74.1 | 67.2 | [checkpoint] |
 | &nbsp;&nbsp;+ rotation average    | 0.66  | 75.1 | 69.0 | - |
 | FastPointTransformer              | 0.14 | 76.6 | 69.2 | [checkpoint] |
