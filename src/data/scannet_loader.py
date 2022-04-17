@@ -9,7 +9,6 @@ import torch
 import pytorch_lightning as pl
 
 from src.data.collate import CollationFunctionFactory
-from src.data.sampler import InfSampler
 import src.data.transforms as T
 
 SCANNET_COLOR_MAP = {
