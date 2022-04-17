@@ -81,7 +81,7 @@ You can install the environment by using the provided shell script:
 ```
 
 ### (3D Semantic Segmentation) Training & Evaluation
-First of all, you need to download the datasets (ScanNet V2 and S3DIS) from the official websites, and preprocess them as:
+First of all, you need to download the datasets (ScanNet V2 and S3DIS), and preprocess them as:
 ```bash
 (fpt) ~/FastPointTransformer$ python src/data/preprocess_scannet.py # you need to modify the data path
 (fpt) ~/FastPointTransformer$ python src/data/preprocess_s3dis.py # you need to modify the data path
