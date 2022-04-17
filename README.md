@@ -30,7 +30,7 @@ If you find our code or paper useful, please consider citing our paper:
 
 ## Experiments
 ### 1. 3D semantic segmentation
-We denote MinkowskiNet42 trained with this repo as MinkowskiNet42<sup>&dagger;</sup>, and report rotation-averaged mIoU scores within parentheses.
+We denote MinkowskiNet42 trained with this repository as MinkowskiNet42<sup>&dagger;</sup>, and report rotation-averaged mIoU scores within parentheses.
 
 | Model                                   | Dataset           | Voxel Size | mIoU | Reference |
 |:---------------------------------------:|:-----------------:|:----------:|:--------:|:---------:|
