@@ -131,7 +131,7 @@ You need to generate predictions via the following command:
 ```
 Then, you can calculate the consistency score (CScore) with:
 ```bash
-(fpt) ~/FastPointTransformer$ python -m src.cscore.calculate {prediction_dir} # This will be done within seconds.
+(fpt) ~/FastPointTransformer$ python -m src.cscore.calculate {prediction_dir} # This takes seconds.
 ```
 
 ## Acknowledment
