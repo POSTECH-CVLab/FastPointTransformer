@@ -33,15 +33,14 @@ If you find our code or paper useful, please consider citing our paper:
 ### 1. S3DIS Area 5 test
 We denote MinkowskiNet42 trained with this repository as MinkowskiNet42<sup>&dagger;</sup>.
 We use voxel size 4cm for both MinkowskiNet42<sup>&dagger;</sup> and our Fast Point Transformer.
-We highlight the **best** method in the table below.
 
 | Model                             | Latency (sec) | mAcc (%) | mIoU (%) | Reference |
 |:----------------------------------|--------------------:|:--------:|:--------:|:---------:|
 | PointTransformer                  | 18.07 | 76.5 | 70.4 | [Codes from the authors](https://github.com/POSTECH-CVLab/point-transformer) |
-| MinkowskiNet42<sup>&dagger;</sup> | **0.08**  | 74.1 | 67.2 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EZcO0DH6QeNGgIwGFZsmL-4BAlikmHAHlBs4JBcS5XfpVQ?download=1) |
+| MinkowskiNet42<sup>&dagger;</sup> | 0.08  | 74.1 | 67.2 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EZcO0DH6QeNGgIwGFZsmL-4BAlikmHAHlBs4JBcS5XfpVQ?download=1) |
 | &nbsp;&nbsp;+ rotation average    | 0.66  | 75.1 | 69.0 | - |
 | FastPointTransformer              | 0.14 | 76.6 | 69.2 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ER8KwMTzqAxAvK9KeOZ9U_IBuCAuv4hP6zOWD-3HNO6Xeg?download=1) |
-| &nbsp;&nbsp;+ rotation average    | 1.13  | **77.6** | **71.0** | - |
+| &nbsp;&nbsp;+ rotation average    | 1.13  | 77.6 | 71.0 | - |
 
 ### 2. ScanNetV2 validation
 #### 2-1. 3D semantic segmentation
