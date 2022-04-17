@@ -1,23 +1,17 @@
-<div align="center">   
-  
 # Fast Point Transformer
-[![Paper](https://img.shields.io/badge/paper-arXiv%3A2007.00151-green)](https://arxiv.org/abs/2112.04702)
+### [Project Page](http://cvlab.postech.ac.kr/research/FPT/) | [Paper](https://arxiv.org/abs/2112.04702)
 
-</div>
-
-This repository contains the source code and data for our paper:
-
-[Fast Point Transformer](https://arxiv.org/abs/2112.04702) \
+[Fast Point Transformer](https://arxiv.org/abs/2112.04702)  
  [Chunghyun Park](https://chrockey.github.io/),
- [Yoonwoo Jeong](https://github.com/jeongyw12382),
+ [Yoonwoo Jeong](https://yoonwoojeong.medium.com/about),
  [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/),
- [Jaesik Park](http://jaesik.info/) \
- POSTECH GSAI & CSE \
- IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2022
+ [Jaesik Park](http://jaesik.info/)<br>
+ POSTECH GSAI & CSE<br>
+in CVPR 2022
 
- <div style="text-align:center">
- <img src="assets/overview.png" alt="An overview of the proposed method"/>
- </div>
+<div style="text-align:center">
+<img src="assets/overview.png" alt="An Overview of the proposed pipeline"/>
+</div>
 
 ## Overview
 This work introduces Fast Point Transformer that consists of a new lightweight self-attention layer. Our approach encodes continuous 3D coordinates, and the voxel hashing-based architecture boosts computational efficiency. The proposed method is demonstrated with 3D semantic segmentation and 3D detection. The accuracy of our approach is competitive to the best voxel based method, and our network achieves 129 times faster inference time than the state-of-the-art, Point Transformer, with a reasonable accuracy trade-off in 3D semantic segmentation on S3DIS dataset.
