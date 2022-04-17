@@ -39,9 +39,8 @@ def print_results(classnames, confusion_matrix):
     console.print(table)
 
 
-def get_rotation_matrices():
-    N = 8
-    angles = [2 * np.pi / N * i for i in range(0, N)]
+def get_rotation_matrices(num_rotations=8):
+    angles = [2 * np.pi / num_rotations * i for i in range(0, num_rotations)]
     rot_matrices = []
     for angle in angles:
         rot_matrices.append(
@@ -137,7 +136,11 @@ if __name__ == "__main__":
     parser.add_argument("config", type=str)
     parser.add_argument("ckpt_path", type=str)
     parser.add_argument("-r", "--use_rotation_average", action="store_true")
+    parser.add_argument("-v", "--voxel_size", type=float, default=None) # overwrite voxel_size
     args = parser.parse_args()
 
     gin.parse_config_file(args.config)
+    if args.voxel_size is not None:
+        gin.bind_parameter("DimensionlessCoordinates.voxel_size", args.voxel_size)
+
     eval(args.ckpt_path, use_rotation_average=args.use_rotation_average)

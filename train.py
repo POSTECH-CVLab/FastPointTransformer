@@ -86,11 +86,14 @@ if __name__ == "__main__":
     parser.add_argument("--save_path", type=str, default="experiments")
     parser.add_argument("--run_name", type=str, default="default")
     parser.add_argument("--seed", type=int, default=1235)
+    parser.add_argument("-v", "--voxel_size", type=float, default=None)
     parser.add_argument("--debug", action="store_true")
     args = parser.parse_args()
 
     pl.seed_everything(args.seed)
     gin.parse_config_file(args.config)
+    if args.voxel_size is not None:
+        gin.bind_parameter("DimensionlessCoordinates.voxel_size", args.voxel_size)
     setup_logger(args.run_name, args.debug)
 
     train(save_path=args.save_path, run_name=args.run_name)
