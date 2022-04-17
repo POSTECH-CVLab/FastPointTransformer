@@ -23,6 +23,18 @@ This repository contains the source code and data for our paper:
 
  This work introduces Fast Point Transformer that consists of a new lightweight self-attention layer. Our approach encodes continuous 3D coordinates, and the voxel hashing-based architecture boosts computational efficiency. The proposed method is demonstrated with 3D semantic segmentation and 3D detection. The accuracy of our approach is competitive to the best voxel based method, and our network achieves 129 times faster inference time than the state-of-the-art, Point Transformer, with a reasonable accuracy trade-off in 3D semantic segmentation on S3DIS dataset.
 
+## Citation
+If you find our code or paper useful, please consider citing our paper:
+
+ ```BibTeX
+@inproceedings{park2022fast,
+  title={{Fast Point Transformer}},
+  author={Chunghyun Park and Yoonwoo Jeong and Minsu Cho and Jaesik Park},
+  booktitle={Proceedings of the {IEEE/CVF} Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2022}
+}
+```
+
 ## Installation
 This repository is developed and tested on
 
@@ -37,18 +49,6 @@ This repository is developed and tested on
 One can install the environment by using the provided shell script (`setup.sh`):
 ```bash
 bash setup.sh fpt
-```
-
-## Citation
-If you find our code or paper useful, please consider citing our paper:
-
- ```BibTeX
-@inproceedings{park2022fast,
-  title={{Fast Point Transformer}},
-  author={Chunghyun Park and Yoonwoo Jeong and Minsu Cho and Jaesik Park},
-  booktitle={Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition},
-  year={2022}
-}
 ```
 
 ## Acknowledment
