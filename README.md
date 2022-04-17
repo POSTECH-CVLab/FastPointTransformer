@@ -8,7 +8,7 @@
 This repository contains the source code and data for our paper:
 
 [Fast Point Transformer](https://arxiv.org/abs/2112.04702) \
- [Chunghyun Park](https://github.com/chrockey),
+ [Chunghyun Park](https://chrockey.github.io/),
  [Yoonwoo Jeong](https://github.com/jeongyw12382),
  [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/),
  [Jaesik Park](http://jaesik.info/) \
@@ -46,11 +46,15 @@ This repository is developed and tested on
 - MinkowskiEngine 0.5.4
 
 ### Environment Setup
-One can install the environment by using the provided shell script (`setup.sh`):
+One can install the environment by using the provided shell script:
 ```bash
-bash setup.sh fpt
+~$ git clone --recursive git@github.com:chrockey/FastPointTransformer.git
+~$ cd FastPointTransformer
+~/FastPointTransformer$ bash setup.sh fpt
 ```
 
 ## Acknowledment
 
 Our code is based on the [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine) and [Torch-Points3D](https://github.com/torch-points3d/torch-points3d).
+We also thank [Hengshuang Zhao](https://hszhao.github.io/) for providing [the code](https://github.com/POSTECH-CVLab/point-transformer) of [Point Transformer](https://arxiv.org/abs/2012.09164).
+If you use our model, please consider citing them as well.
