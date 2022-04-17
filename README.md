@@ -55,8 +55,8 @@ We highlight the **best** method in the table below.
 | FastPointTransformer              | 10cm | 76.1 | 66.5 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ESO1jLNHO89ApdjguUauqsMBCx_TijA26UOeGbF4XxQwoA?download=1) |
 
 #### 2-2. 3D object detection
-| Model                             | Voxel Size  | mAP@0.25 | mAP@0.5 | Reference |
-|:----------------------------------|------------:|:--------:|:-------:|:---------:|
+| Model                             | Voxel Size   | mAP@0.25 | mAP@0.5 | Reference |
+|:----------------------------------|:------------:|:--------:|:-------:|:---------:|
 | MinkowskiNet42<sup>&dagger;</sup> | 5cm |  |  | [Checkpoint] |
 | FastPointTransformer              | 5cm |  |  | [Checkpoint] |
 
