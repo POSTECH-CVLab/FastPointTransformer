@@ -277,12 +277,6 @@ class FastPointTransformer(nn.Module):
 
 
 @gin.configurable
-class FastPointTransformer(FastPointTransformer):
-    LAYER = LightweightSelfAttentionLayer
-    BLOCK = LightweightSelfAttentionBlock
-
-
-@gin.configurable
 class FastPointTransformerSmall(FastPointTransformer):
     LAYERS = (2, 2, 2, 2, 2, 2, 2, 2)
 

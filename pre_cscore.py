@@ -151,7 +151,7 @@ if __name__ == "__main__":
     if args.model_name == "mink":
         model = get_model("Res16UNet34C")(ScanNetRGBDataset_.IN_CHANNELS, ScanNetRGBDataset_.NUM_CLASSES)
     else:
-        model = get_model("FastPointTransformerLegacy")(ScanNetRGBDataset_.IN_CHANNELS, ScanNetRGBDataset_.NUM_CLASSES)
+        model = get_model("FastPointTransformer")(ScanNetRGBDataset_.IN_CHANNELS, ScanNetRGBDataset_.NUM_CLASSES)
     model = load_from_pl_state_dict(model, ckpt["state_dict"])
     model = model.to(device)
     model.eval()

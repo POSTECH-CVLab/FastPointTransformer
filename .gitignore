@@ -15,10 +15,12 @@ Open3D/
 *.ply
 *.pyc
 *.png
+*.ckpt
 
 thirdparty/MinkowskiEngine/MinkowskiEngine.egg-info/
 thirdparty/MinkowskiEngine/build/
 thirdparty/MinkowskiEngine/dist/
 
 experiments/
+checkpoints/
 sbatch/*.out
