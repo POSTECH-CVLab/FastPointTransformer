@@ -43,7 +43,7 @@ We highlight the **best** method in the table below.
 | FastPointTransformer              | 0.14 | 76.6 | 69.2 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ER8KwMTzqAxAvK9KeOZ9U_IBuCAuv4hP6zOWD-3HNO6Xeg?download=1) |
 | &nbsp;&nbsp;+ rotation average    | 1.13  | **77.6** | **71.0** | - |
 
-### 2. ScanNet V2 validation
+### 2. ScanNetV2 validation
 #### 2-1. 3D semantic segmentation
 | Model                             | Voxel Size  | mAcc (%) | mIoU (%) | Reference |
 |:----------------------------------|------------:|:--------:|:--------:|:---------:|
@@ -81,7 +81,7 @@ You can install the environment by using the provided shell script:
 ```
 
 ### (3D Semantic Segmentation) Training & Evaluation
-First of all, you need to download the datasets (ScanNet V2 and S3DIS), and preprocess them as:
+First of all, you need to download the datasets (ScanNetV2 and S3DIS), and preprocess them as:
 ```bash
 (fpt) ~/FastPointTransformer$ python src/data/preprocess_scannet.py # you need to modify the data path
 (fpt) ~/FastPointTransformer$ python src/data/preprocess_s3dis.py # you need to modify the data path
@@ -123,6 +123,7 @@ For example, you can train and evaluate Fast Point Transformer with voxel size 4
 ```
 
 ### (3D Object Detection) Training & Evaluation
+For 3D object detection, you need to prepare an environment and ScanNetV2 dataset following the [Torch-Points3D repository](https://github.com/torch-points3d/torch-points3d).
 
 ### (Consistency Score) Evaluation
 You need to generate predictions via the following command:
