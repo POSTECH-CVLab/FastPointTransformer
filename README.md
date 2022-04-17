@@ -77,6 +77,7 @@ You can install the environment by using the provided shell script:
 ~$ git clone --recursive git@github.com:chrockey/FastPointTransformer.git
 ~$ cd FastPointTransformer
 ~/FastPointTransformer$ bash setup.sh fpt
+~/FastPointTransformer$ conda activate fpt
 ```
 
 ### (3D Semantic Segmentation) Training & Evaluation
