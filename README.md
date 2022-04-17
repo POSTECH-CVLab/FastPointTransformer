@@ -110,6 +110,8 @@ ${data_dir}
           |--Area_1
           |    |--conferenceRoom_1.ply
           |    |--conferenceRoom_2.ply
+          |             ...
+          |--Area_2
                         ...
 ```
 
