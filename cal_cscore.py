@@ -85,7 +85,7 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--dir", type=str)
-    parser.add_argument("--save", action="store_true", default=False)
+    parser.add_argument("--save", action="store_true", default=False) # for point-wise cscore visualization.
     args = parser.parse_args()
 
     main(args)

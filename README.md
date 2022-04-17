@@ -81,10 +81,20 @@ You can install the environment by using the provided shell script:
 
 ### (Semantic Segmentation) Training & Evaluation
 You can train a model by using the provided python scripts (`train.py` and `eval.py`) with configuration files in the `config` directory.
-For example, you can train and evaluate Fast Point Transformer with voxel size 4cm on S3DIS dataset via following commands:
+For example, you can train and evaluate Fast Point Transformer with voxel size 4cm on S3DIS dataset via the following commands:
 ```bash
 (fpt) ~/FastPointTransformer$ python train.py config/s3dis/train_fpt.gin
 (fpt) ~/FastPointTransformer$ python eval.py config/s3dis/eval_fpt.gin {checkpoint_file}
+```
+
+### (Consistency Score) Evaluation
+You need to generate predictions via the following command:
+```bash
+(fpt) ~/FastPointTransformer$ python pre_cscore.py {checkpoint_file} -m {model_name} -v {voxel_size} # This takes some time.
+```
+Then, you can calculate the consistency score (CScore) with:
+```bash
+(fpt) ~/FastPointTransformer$ python cal_cscore.py {prediction_dir} # This will be done within seconds.
 ```
 
 ## Acknowledment

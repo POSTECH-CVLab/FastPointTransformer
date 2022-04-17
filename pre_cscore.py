@@ -31,9 +31,7 @@ class SimpleConfig:
 
 
 class TransformGenerator:
-    def __init__(self, voxel_size=0.1, trans_granularity=3, rot_granularity=8, type='trans'):
-        assert type in ['trans', 'rot', 'full']
-        self.type = type
+    def __init__(self, voxel_size=0.1, trans_granularity=3, rot_granularity=8):
         self.voxel_size = voxel_size
         trans_step = 1. / trans_granularity
         self.trans_list = [trans_step * i * voxel_size for i in range(trans_granularity)] # 0, 1, 2, 3, ..., granularity - 1
@@ -45,13 +43,8 @@ class TransformGenerator:
 
     def generate_transforms(self):
         self._cleanup()
-        if self.type == 'trans':
-            self.transform_list.extend(self._get_trans_mtx_list())
-        elif self.type == 'rot':
-            self.transform_list.extend(self._get_rot_mtx_list())
-        else:
-            self.transform_list.extend(self._get_trans_mtx_list())
-            self.transform_list.extend(self._get_rot_mtx_list())
+        self.transform_list.extend(self._get_trans_mtx_list())
+        self.transform_list.extend(self._get_rot_mtx_list())
 
     def _get_trans_mtx_list(self):
         mtx_list = []
@@ -89,7 +82,7 @@ class TransformGenerator:
         self.transform_list = []
 
 
-def save_outputs(args, ckpt, model, name, tmatrix):
+def save_outputs(args, model, name, tmatrix):
     output_dir = osp.join(args.out_dir, args.model_name + f"-voxel={args.voxel_size}")
     if args.postfix is not None:
         output_dir = output_dir + args.postfix
@@ -105,7 +98,8 @@ def save_outputs(args, ckpt, model, name, tmatrix):
         for coords_, feats, labels, fname in dset:
             if tmatrix is not None:
                 np.save(osp.join(output_name, "tmatrix.npy"), tmatrix)
-                coords = torch.from_numpy(homogeneous_coords(coords_.numpy()) @ tmatrix.T)[:, :3]
+                coords_ = homogeneous_coords(coords_) @ tmatrix.T
+                coords = coords_[:, :3]
             else:
                 coords = coords_
             coords, feats = ME.utils.sparse_collate(
@@ -135,8 +129,7 @@ if __name__ == "__main__":
     parser.add_argument("-m", "--model_name", type=str, choices=["mink", "fpt"])
     parser.add_argument("-v", "--voxel_size", type=float, choices=[0.1, 0.05, 0.02])
     parser.add_argument("--scannet_path", type=str, default="/root/data/scannetv2")
-    parser.add_argument("--type", type=str, default="full", choices=["full"])
-    parser.add_argument("--out_dir", type=str, default="/root/data/cvpr2022/consistency_outputs")
+    parser.add_argument("--out_dir", type=str, default="consistency_outputs")
     parser.add_argument("-p", "--postfix", type=str, default=None)
     args = parser.parse_args()
 
@@ -158,13 +151,13 @@ if __name__ == "__main__":
     print("    done!")
 
     print(">>> Generating rigid transformations...")
-    tgenerator = TransformGenerator(voxel_size=args.voxel_size, type=args.type)
+    tgenerator = TransformGenerator(voxel_size=args.voxel_size)
     tgenerator.generate_transforms()
     print(f'    {len(tgenerator.transform_list)} rigid transformations generated!')
 
     print(f">>> Evaluating the model...")
-    save_outputs(args, ckpt, model, "reference", None)
+    save_outputs(args, model, "reference", None)
     for t_idx, tmatrix in enumerate(tqdm(tgenerator.transform_list)):
         print(tmatrix)
-        save_outputs(args, ckpt, model, f"transform{t_idx}", tmatrix)
+        save_outputs(args, model, f"transform{t_idx}", tmatrix)
     print("    done!")
