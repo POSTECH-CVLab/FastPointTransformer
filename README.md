@@ -92,7 +92,7 @@ For example, you can train and evaluate Fast Point Transformer with voxel size 4
 ### (Consistency Score) Evaluation
 You need to generate predictions via the following command:
 ```bash
-(fpt) ~/FastPointTransformer$ python pre_cscore.py {checkpoint_file} -m {model_name} -v {voxel_size} # This takes some time.
+(fpt) ~/FastPointTransformer$ python pre_cscore.py {checkpoint_file} -m {model_name} -v {voxel_size} # This takes hours.
 ```
 Then, you can calculate the consistency score (CScore) with:
 ```bash
