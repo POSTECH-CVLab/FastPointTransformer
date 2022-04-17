@@ -166,18 +166,6 @@ class ScanNetRGBDataset(ScanNetDatasetBase):
 
 
 @gin.configurable
-class ScanNetRGBReconDataset(ScanNetRGBDataset):
-    def __getitem__(self, idx):
-        data = self._load_data(idx)
-        coords, feats, _ = self.get_cfl_from_data(data)
-        if self.transform is not None:
-            coords, feats, _ = self.transform(coords, feats, None)
-        coords = torch.from_numpy(coords)
-        feats = torch.from_numpy(feats)
-        return coords.float(), feats.float(), feats.clone(), None
-
-
-@gin.configurable
 class ScanNetRGBDataModule(pl.LightningDataModule):
     def __init__(
         self,
@@ -226,24 +214,6 @@ class ScanNetRGBDataModule(pl.LightningDataModule):
             self.dset_val, batch_size=self.val_batch_size, shuffle=False, num_workers=self.val_num_workers, 
             drop_last=False, collate_fn=self.collate_fn
         )
-
-
-@gin.configurable
-class ScanNetRGBReconDataModule(ScanNetRGBDataModule):
-    def setup(self, stage: Optional[str] = None):
-        if stage == "fit" or stage is None:
-            train_transforms = []
-            if self.train_transforms_ is not None:
-                for name in self.train_transforms_:
-                    train_transforms.append(getattr(T, name)())
-            train_transforms = T.Compose(train_transforms)
-            self.dset_train = ScanNetRGBReconDataset("train", self.data_root, train_transforms)
-        eval_transforms = []
-        if self.eval_transforms_ is not None:
-            for name in self.eval_transforms_:
-                eval_transforms.append(getattr(T, name)())
-        eval_transforms = T.Compose(eval_transforms)
-        self.dset_val = ScanNetRGBReconDataset("val", self.data_root, eval_transforms)
 
 
 @gin.configurable

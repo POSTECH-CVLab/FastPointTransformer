@@ -1,6 +1,0 @@
-include "./config/scannet/train_fpt-legacy_5cm_gsai.gin"
-
-# Augmentation
-RandomCrop.x = 250
-RandomCrop.y = 250
-RandomCrop.z = 250

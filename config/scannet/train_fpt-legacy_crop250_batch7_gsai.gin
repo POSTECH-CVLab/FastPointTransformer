@@ -1,9 +1,0 @@
-include "./config/scannet/train_fpt-legacy_gsai.gin"
-
-# Data module
-ScanNetRGBDataModule.train_batch_size = 7
-
-# Augmentation
-RandomCrop.x = 250
-RandomCrop.y = 250
-RandomCrop.z = 250

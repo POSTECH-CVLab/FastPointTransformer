@@ -1,6 +1,0 @@
-include "./config/scannet/train_res16unet34c.gin"
-
-# Model
-train.model_name = "Res16UNet34CSmall"
-Res16UNet34CSmall.in_channels = %in_channels
-Res16UNet34CSmall.out_channels = %out_channels

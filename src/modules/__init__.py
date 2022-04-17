@@ -1,7 +1,6 @@
 from .segmentation import LitSegMinkowskiModule
-from .reconstruction import LitReconMinkowskiModule
 
-modules = [LitSegMinkowskiModule, LitReconMinkowskiModule]
+modules = [LitSegMinkowskiModule]
 modules_dict = {m.__name__: m for m in modules}
 
 

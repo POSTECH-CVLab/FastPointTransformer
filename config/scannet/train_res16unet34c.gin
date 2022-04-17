@@ -1,4 +1,5 @@
-include "./config/scannet/default.gin"
+# The code should be run on a GPU with at least 24GB memory (e.g., A5000).
+include "./config/scannet/train_default.gin"
 
 # Model
 train.lightning_module_name = "LitSegMinkowskiModule"

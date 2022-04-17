@@ -59,7 +59,7 @@ def train(
     ]
     additional_kwargs = dict()
     if gpus > 1:
-        raise NotImplementedError("Multi-gpu training is not supported.")
+        raise NotImplementedError("Currently, multi-gpu training is not supported.")
 
     trainer = pl.Trainer(
         default_root_dir=save_path,

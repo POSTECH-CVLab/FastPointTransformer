@@ -6,12 +6,10 @@ from src.data.s3dis_loader import *
 ALL_DATA_MODULES = [
     ScanNetRGBDataModule,
     S3DISArea5RGBDataModule,
-    ScanNetRGBReconDataModule,
 ]
 ALL_DATASETS = [
     ScanNetRGBDataset,
     S3DISArea5RGBDataset,
-    ScanNetRGBReconDataset,
     ScanNetRGBDataset_,
 ]
 data_module_str_mapping = {d.__name__: d for d in ALL_DATA_MODULES}

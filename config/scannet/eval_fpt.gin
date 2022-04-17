@@ -1,0 +1,6 @@
+include "./config/scannet/eval_res16unet34c.gin"
+
+# Model
+train.model_name = "FastPointTransformer"
+FastPointTransformer.in_channels = %in_channels
+FastPointTransformer.out_channels = %out_channels
