@@ -8,7 +8,7 @@ from plyfile import PlyData, PlyElement
 
 
 SCANNET_RAW_PATH = Path('/root/data/scannetv2_raw') # you may need to modify this path.
-SCANNET_OUT_PATH = Path('/root/data/temp-temp-temp/scannetv2_processed')
+SCANNET_OUT_PATH = Path('/root/data/scannet_processed') # you may need to modify this path.
 TRAIN_DEST = 'train'
 TEST_DEST = 'test'
 SUBSETS = {TRAIN_DEST: 'scans', TEST_DEST: 'scans_test'}

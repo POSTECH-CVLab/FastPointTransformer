@@ -8,7 +8,7 @@ from plyfile import PlyData, PlyElement
 
 
 STANFORD_3D_IN_PATH = '/root/data/s3dis/Stanford3dDataset_v1.2/' # you may need to modify this path.
-STANFORD_3D_OUT_PATH = '/root/data/s3dis/s3dis_processed'
+STANFORD_3D_OUT_PATH = '/root/data/s3dis/s3dis_processed' # you may need to modify this path.
 IGNORE_LABEL = 255
 
 
