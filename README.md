@@ -8,7 +8,7 @@ This repository contains the source code and data for our paper:
 > [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/), and
 > [Jaesik Park](http://jaesik.info/)<br>
 > POSTECH GSAI & CSE<br>
-> IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2022, New Orleans.
+> CVPR, 2022, New Orleans.
 
 <div style="text-align:center">
 <img src="assets/overview.png" alt="An Overview of the proposed pipeline"/>
