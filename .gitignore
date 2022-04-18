@@ -20,9 +20,10 @@ Open3D/
 thirdparty/MinkowskiEngine/MinkowskiEngine.egg-info/
 thirdparty/MinkowskiEngine/build/
 thirdparty/MinkowskiEngine/dist/
+thirdparty-temp/
 
 experiments/
 checkpoints/
 consistency_outputs/
-temp/
+votenet-logs-temp/
 sbatch/*.out
