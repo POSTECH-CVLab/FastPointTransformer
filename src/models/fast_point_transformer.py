@@ -91,7 +91,7 @@ class LightweightSelfAttentionLayer(LocalSelfAttentionBase):
         kernel_map, out_key = self.get_kernel_map_and_out_key(stensor)
         kq_map = self.key_query_map_from_kernel_map(kernel_map)
 
-        # attention weights with softmax normalization
+        # attention weights with cosine similarity
         attn = torch.zeros((kq_map.shape[1], self.num_heads), dtype=dtype, device=device)
         norm_q = F.normalize(q, p=2, dim=-1)
         norm_pos_enc = F.normalize(self.inter_pos_enc, p=2, dim=-1)
