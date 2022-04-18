@@ -122,7 +122,7 @@ For example, you can train and evaluate Fast Point Transformer with voxel size 4
 ```
 
 ### (3D Object Detection) Training & Evaluation
-For 3D object detection, you need to prepare ScanNetV2 dataset following the [Torch-Points3D repository](https://github.com/torch-points3d/torch-points3d).
+For 3D object detection, please refer (our another repo)[https://github.com/chrockey/FastPointTransformer-VoteNet].
 
 ### (Consistency Score) Evaluation
 You need to generate predictions via the following command:
