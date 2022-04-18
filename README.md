@@ -102,8 +102,8 @@ ${data_dir}
 │       └── test
 └── s3dis
     ├── meta_data
-    │   ├──area1.txt
-    │   ├──area2.txt
+    │   ├── area1.txt
+    │   ├── area2.txt
     │   └── ...
     └── s3dis_processed
         ├── Area_1
