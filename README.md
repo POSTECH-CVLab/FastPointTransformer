@@ -1,6 +1,6 @@
 # Fast Point Transformer
 ### [Project Page](http://cvlab.postech.ac.kr/research/FPT/) | [Paper](https://arxiv.org/abs/2112.04702)
-This repository contains the source code and data for our paper:
+This repository contains the official source code and data for our paper:
 
 >[Fast Point Transformer](https://arxiv.org/abs/2112.04702)  
 > [Chunghyun Park](https://chrockey.github.io/),
