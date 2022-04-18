@@ -43,7 +43,7 @@ else
 
     echo "[FPT INFO] Installing other dependencies..."
     conda install -c anaconda pandas scipy h5py scikit-learn -y
-    conda install -c conda-forge matplotlib plyfile pytorch-lightning torchmetrics wandb wrapt gin-config rich einops -y
+    conda install -c conda-forge plyfile pytorch-lightning torchmetrics wandb wrapt gin-config rich einops -y
     conda install -c open3d-admin -c conda-forge open3d -y
     pip install lightning-bolts
     pip install torch-scatter -f https://data.pyg.org/whl/torch-1.10.0+cu111.html
