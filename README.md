@@ -72,7 +72,7 @@ You can install the environment by using the provided shell script:
 ~/FastPointTransformer$ conda activate fpt
 ```
 
-### (3D Semantic Segmentation) Training & Evaluation
+### Training & Evaluation
 First of all, you need to download the datasets (ScanNetV2 and S3DIS), and preprocess them as:
 ```bash
 (fpt) ~/FastPointTransformer$ python src/data/preprocess_scannet.py # you need to modify the data path
@@ -114,7 +114,7 @@ For example, you can train and evaluate Fast Point Transformer with voxel size 4
 (fpt) ~/FastPointTransformer$ python eval.py config/s3dis/eval_fpt.gin {checkpoint_file} # use -r option for rotation averaging.
 ```
 
-### (Consistency Score) Evaluation
+### Consistency Score
 You need to generate predictions via the following command:
 ```bash
 (fpt) ~/FastPointTransformer$ python -m src.cscore.prepare {checkpoint_file} -m {model_name} -v {voxel_size} # This takes hours.
