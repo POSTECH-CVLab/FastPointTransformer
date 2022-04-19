@@ -43,7 +43,6 @@ We use voxel size 4cm for both MinkowskiNet42<sup>&dagger;</sup> and our Fast Po
 | &nbsp;&nbsp;+ rotation average    | 1.13  | 77.6 | 71.0 | - |
 
 ### 2. ScanNetV2 validation
-#### 2-1. 3D semantic segmentation
 | Model                             | Voxel Size  | mAcc (%) | mIoU (%) | Reference |
 |:----------------------------------|:-----------:|:--------:|:--------:|:---------:|
 | MinkowskiNet42                    | 2cm | - | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
@@ -53,12 +52,6 @@ We use voxel size 4cm for both MinkowskiNet42<sup>&dagger;</sup> and our Fast Po
 | FastPointTransformer              | 5cm | 78.9 | 70.0 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EXbXclfXZGtMpBZY93zi7M8B_tl8rwM65NK1cumN7QM_8g?download=1) |
 | MinkowskiNet42<sup>&dagger;</sup> | 10cm | 70.8 | 60.7 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EVLn0f5noY1Al6Kos9l-0yABM0qZLFt6d4a3yFgTcQ2Vmw?download=1) |
 | FastPointTransformer              | 10cm | 76.1 | 66.5 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/ESO1jLNHO89ApdjguUauqsMBCx_TijA26UOeGbF4XxQwoA?download=1) |
-
-#### 2-2. 3D object detection with [VoteNet](https://arxiv.org/abs/1904.09664)
-| Backbone                          | Voxel Size   | mAP@0.25 | mAP@0.5 | Reference |
-|:----------------------------------|:------------:|:--------:|:-------:|:---------:|
-| MinkowskiNet42<sup>&dagger;</sup> | 5cm | 55.3 | 32.8 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/Ecod112ZRnlPp97NNu77N0oBfPtgwzmPxr-tvLvs3eFkwA?download=1) |
-| FastPointTransformer              | 5cm | 59.1 | 35.4 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EZkpqNi9elVFohE4Xmx66GEBQSjys0ED_h1vUBnJwUz72g?download=1) |
 
 ## Installation
 This repository is developed and tested on
@@ -121,9 +114,6 @@ For example, you can train and evaluate Fast Point Transformer with voxel size 4
 (fpt) ~/FastPointTransformer$ python eval.py config/s3dis/eval_fpt.gin {checkpoint_file} # use -r option for rotation averaging.
 ```
 
-### (3D Object Detection) Training & Evaluation
-For 3D object detection, please refer (our another repo)[https://github.com/chrockey/FastPointTransformer-VoteNet].
-
 ### (Consistency Score) Evaluation
 You need to generate predictions via the following command:
 ```bash
@@ -136,6 +126,6 @@ Then, you can calculate the consistency score (CScore) with:
 
 ## Acknowledment
 
-Our code is based on the [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine) and [Torch-Points3D](https://github.com/torch-points3d/torch-points3d).
+Our code is based on the [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine).
 We also thank [Hengshuang Zhao](https://hszhao.github.io/) for providing [the code](https://github.com/POSTECH-CVLab/point-transformer) of [Point Transformer](https://arxiv.org/abs/2012.09164).
 If you use our model, please consider citing them as well.
