@@ -66,7 +66,7 @@ This repository is developed and tested on
 ### Environment Setup
 You can install the environment by using the provided shell script:
 ```bash
-~$ git clone --recursive git@github.com:chrockey/FastPointTransformer.git
+~$ git clone --recursive git@github.com:POSTECH-CVLab/FastPointTransformer.git
 ~$ cd FastPointTransformer
 ~/FastPointTransformer$ bash setup.sh fpt
 ~/FastPointTransformer$ conda activate fpt
