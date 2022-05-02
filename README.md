@@ -124,7 +124,7 @@ Then, you can calculate the consistency score (CScore) with:
 (fpt) ~/FastPointTransformer$ python -m src.cscore.calculate {prediction_dir} # This takes seconds.
 ```
 
-## Acknowledment
+## Acknowledgement
 
 Our code is based on the [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine).
 We also thank [Hengshuang Zhao](https://hszhao.github.io/) for providing [the code](https://github.com/POSTECH-CVLab/point-transformer) of [Point Transformer](https://arxiv.org/abs/2012.09164).
