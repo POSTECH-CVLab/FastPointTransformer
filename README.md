@@ -124,6 +124,9 @@ Then, you can calculate the consistency score (CScore) with:
 (fpt) ~/FastPointTransformer$ python -m src.cscore.calculate {prediction_dir} # This takes seconds.
 ```
 
+### 3D Object Detection using VoteNet
+Please refer [this repository](https://github.com/chrockey/FastPointTransformer-VoteNet).
+
 ## Acknowledgement
 
 Our code is based on the [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine).
