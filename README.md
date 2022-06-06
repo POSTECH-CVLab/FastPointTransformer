@@ -45,7 +45,7 @@ We use voxel size 4cm for both MinkowskiNet42<sup>&dagger;</sup> and our Fast Po
 ### 2. ScanNetV2 validation
 | Model                             | Voxel Size  | mAcc (%) | mIoU (%) | Reference |
 |:----------------------------------|:-----------:|:--------:|:--------:|:---------:|
-| MinkowskiNet42                    | 2cm | - | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
+| MinkowskiNet42                    | 2cm | 80.4 | 72.2 | [Official GitHub](https://github.com/chrischoy/SpatioTemporalSegmentation) |
 | MinkowskiNet42<sup>&dagger;</sup> | 2cm | 81.4 | 72.1 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EXmE1pWDZ8lEtJU7SQMjkXcBnhSMXFTdHWXkMAAF7KeiuA?download=1) |
 | FastPointTransformer              | 2cm | 81.2 | 72.5 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EX_xAyhoNXdJg4eSg2vS_bYB8eFAP7A8FPCYfKOS2T13LQ?download=1) |
 | MinkowskiNet42<sup>&dagger;</sup> | 5cm | 76.3 | 67.0 | [Checkpoint](https://postechackr-my.sharepoint.com/:u:/g/personal/p0125ch_postech_ac_kr/EZLG00u5JXJDvOi3sYziOIMB1l6HNN5OW9gTQRFWc6EwzA?download=1) |
