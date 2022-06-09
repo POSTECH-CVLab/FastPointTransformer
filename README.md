@@ -114,7 +114,7 @@ For example, you can train and evaluate Fast Point Transformer with voxel size 4
 (fpt) ~/FastPointTransformer$ python eval.py config/s3dis/eval_fpt.gin {checkpoint_file} # use -r option for rotation averaging.
 ```
 
-## Consistency Score
+### Consistency Score
 You need to generate predictions via the following command:
 ```bash
 (fpt) ~/FastPointTransformer$ python -m src.cscore.prepare {checkpoint_file} -m {model_name} -v {voxel_size} # This takes hours.
@@ -124,7 +124,7 @@ Then, you can calculate the consistency score (CScore) with:
 (fpt) ~/FastPointTransformer$ python -m src.cscore.calculate {prediction_dir} # This takes seconds.
 ```
 
-## 3D Object Detection using VoteNet
+### 3D Object Detection using VoteNet
 Please refer [this repository](https://github.com/chrockey/FastPointTransformer-VoteNet).
 
 ## Acknowledgement
