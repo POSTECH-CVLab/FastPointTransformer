@@ -22,10 +22,12 @@ If you find our code or paper useful, please consider citing our paper:
 
  ```BibTeX
 @inproceedings{park2022fast,
-  title={{Fast Point Transformer}},
-  author={Chunghyun Park and Yoonwoo Jeong and Minsu Cho and Jaesik Park},
+  title={Fast Point Transformer},
+  author={Park, Chunghyun and Jeong, Yoonwoo and Cho, Minsu and Park, Jaesik},
   booktitle={Proceedings of the {IEEE/CVF} Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year={2022}
+  month={June},
+  year={2022},
+  pages={16949-16958}
 }
 ```
 
