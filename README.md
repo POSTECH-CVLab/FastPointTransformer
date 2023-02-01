@@ -60,9 +60,9 @@ This repository is developed and tested on
 
 - Ubuntu 18.04 and 20.04
 - Conda 4.11.0
-- CUDA 11.1
+- CUDA 11.1 and 11.3
 - Python 3.8.13
-- PyTorch 1.7.1 and 1.10.0
+- PyTorch 1.7.1, 1.10.0, and 1.12.1
 - MinkowskiEngine 0.5.4
 
 ### Environment Setup
